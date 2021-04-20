@@ -1,4 +1,5 @@
 # BruteForce
-Team 3 Project
+Team 3
+GAME - The Traveler
 
 Authors: Nick, Shawn, and Terrance
