@@ -8,7 +8,7 @@ class Application {
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         Scanner scanner = new Scanner(System.in);
-
+        System.out.println("Change");
         File file = new File("change.wav");
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
         Clip clip = AudioSystem.getClip();
