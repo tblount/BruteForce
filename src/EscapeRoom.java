@@ -21,7 +21,7 @@ public class EscapeRoom implements EscapeRoomInterface {
     public void load() throws IOException {
 
 //        Path descriptionPath = Path.of("data/Descriptions.csv");
-        Path path = Paths.get("src/RoomData.csv");
+        Path path = Paths.get("data/RoomData.csv");
         Files.readAllLines(path.toAbsolutePath(), StandardCharsets.UTF_8).forEach(roomData -> {
             String[] roomDataCells = roomData.split(" : ");
             String gameName = roomDataCells[0];
