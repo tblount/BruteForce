@@ -17,11 +17,8 @@ class Lobby {
     }
 
     void playSong() {
-        try {
-            MusicPlayer musicPlayer = new MusicPlayer();
-            musicPlayer.play("feelitstill.wav");
-        } catch(Exception e) {
-            System.out.println("Something went wrong.");
-        }
+        MusicPlayer musicPlayer = new MusicPlayer("feelitstill.wav", 50000);
+        musicPlayer.start();
+        MusicPlayer.stopMusic(musicPlayer, 6000);
     }
 }
