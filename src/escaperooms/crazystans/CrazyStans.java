@@ -12,26 +12,31 @@ public class CrazyStans extends EscapeRoom {
 
     Traveler traveler;
     User user;
+    Lobby lobby = new Lobby();
+    MusicPlayer musicPlayer = new MusicPlayer();
 
     public CrazyStans() throws IOException {
 
+    }
+
+    void crazyStansWelcomeMessage() {
+        try {
+            musicPlayer.play("crazystanswelcomemessage.wav");
+        } catch(Exception e) {
+            System.out.println("Something went wrong.");
+        }
     }
 
     @Override
     public void run(Traveler traveler, EscapeRoom escapeRoom) {
         this.traveler = traveler;
         this.user = traveler.getUser();
-        try {
-            MusicPlayer musicPlayer = new MusicPlayer();
-            musicPlayer.play("feelitstill.wav");
-        } catch(Exception e) {
-            System.out.println(e);
-        }
-        System.out.println("You are now in Crazy Stans!");
+        crazyStansWelcomeMessage();
+        lobbyChallenge();
     }
 
     public void lobbyChallenge() {
-
+        System.out.println(lobby.welcomeMessage());
     }
 
     @Override

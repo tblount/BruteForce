@@ -12,20 +12,22 @@ public class Room {
     List<String> usefulItems = new ArrayList<>();
     List<Actor> actors = new ArrayList<>();
 
-    public Room(String name){
+    public Room(String name) {
         setName(name);
     }
-    public Room(String name, List<String> items){
+
+    public Room(String name, List<String> items) {
         this(name);
         setItems(items);
     }
-    public Room(String name, List<String> items, List<String> usefulItems){
-        this(name,items);
+
+    public Room(String name, List<String> items, List<String> usefulItems) {
+        this(name, items);
         setUsefulItems(usefulItems);
     }
 
-    public Room(String name, List<String> items, List<String> usefulItems, List<Actor> actors){
-        this(name,items,usefulItems);
+    public Room(String name, List<String> items, List<String> usefulItems, List<Actor> actors) {
+        this(name, items, usefulItems);
         setActors(actors);
     }
 
@@ -72,7 +74,6 @@ public class Room {
     public boolean hasActor(String actorName) {
         return getActors().contains(actorName);
     }
-
 
 
 }
