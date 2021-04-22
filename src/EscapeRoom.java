@@ -13,8 +13,6 @@ public class EscapeRoom implements EscapeRoomInterface {
 
     Map<String, Playable> escapeRooms = new HashMap<>();
     Map<String, Room> innerRooms = new HashMap<>();
-    Map<String, List<Actor>> actors = new HashMap<>();
-    Map<String, List<String>> descriptions = new HashMap<>();
 
     public EscapeRoom ()throws IOException {
         this.load();
@@ -22,9 +20,9 @@ public class EscapeRoom implements EscapeRoomInterface {
     }
     public void load() throws IOException {
 
-        String roomPath = "Brute/data/RoomData.csv";
-        Path descriptionPath = Path.of("Brute/data/Descriptions.csv");
-        Files.readAllLines(Paths.get(roomPath), StandardCharsets.UTF_8).forEach(roomData -> {
+//        Path descriptionPath = Path.of("data/Descriptions.csv");
+        Path path = Paths.get("src/RoomData.csv");
+        Files.readAllLines(path.toAbsolutePath(), StandardCharsets.UTF_8).forEach(roomData -> {
             String[] roomDataCells = roomData.split(" : ");
             String gameName = roomDataCells[0];
             String roomName = roomDataCells[1];
