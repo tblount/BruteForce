@@ -1,5 +1,7 @@
+import java.io.IOException;
+
 interface EscapeRoomInterface {
-    default Playable playable() {
+    default Playable playable() throws IOException {
         return null;
     }
 

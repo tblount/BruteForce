@@ -1,6 +1,12 @@
+import java.io.IOException;
+
 class CrazyStans extends EscapeRoom {
 
     Traveler traveler;
+
+    public CrazyStans ()  throws IOException {
+
+    }
 
     @Override
     public void run(Traveler traveler, EscapeRoom escapeRoom) {
@@ -14,7 +20,7 @@ class CrazyStans extends EscapeRoom {
     }
 
     @Override
-    public Playable playable() {
+    public Playable playable() throws IOException {
         return new Playable("Crazy Stans", "Welcome to Stans", new CrazyStans());
     }
 }

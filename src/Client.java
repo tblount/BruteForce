@@ -1,8 +1,9 @@
+import java.io.IOException;
 import java.util.*;
 
 class Client {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         User user = new User();
         EscapeRoom escapeRoom = new EscapeRoom();
         escapeRoom.generateEscapeRooms();
