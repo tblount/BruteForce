@@ -42,6 +42,8 @@ public class JoninExams extends EscapeRoom {
 
     public static void main(String[] args) {
 
+        Prompter input = new Prompter(new Scanner(System.in));
+
         ArrayList<String> villages = new ArrayList<String>();
         villages.add("Hidden Leaf");
         villages.add("The Village Hidden in the Waterfall");
@@ -49,12 +51,11 @@ public class JoninExams extends EscapeRoom {
         villages.add("The Village Hidden in the Sand");
         villages.add("The Village Hidden in the Rain");
 
-        Scanner input = new Scanner(System.in);
+//        Scanner input = new Scanner(System.in);
         System.out.println("Hello there! Welcome to the Jonin Exams");
-        System.out.println("What is your name?");
-        String name = input.nextLine();
-        System.out.println("What village are you from?" + villages);
-        String home = input.nextLine();
-        System.out.println(home);
+        String name = input.prompt("What is your name?");
+//        System.out.println(name);
+        String home = input.prompt("What village are you from?" + villages);
+//        System.out.println(home);
     }
 }
