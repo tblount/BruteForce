@@ -1,7 +1,7 @@
-package escaperooms.crazystans;
+package com.escaperooms.crazystans;
 
-import escaperooms.application.Room;
-import escaperooms.music.MusicPlayer;
+import com.escaperooms.application.Room;
+import com.escaperooms.music.MusicPlayer;
 
 import java.util.List;
 

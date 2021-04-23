@@ -1,8 +1,8 @@
-package escaperooms.application;
+package com.escaperooms.application;
 
-import escaperooms.crazystans.CrazyStans;
-import escaperooms.joninexams.JoninExams;
-import escaperooms.spaceodyssey.SpaceOdyssey;
+import com.escaperooms.crazystans.CrazyStans;
+import com.escaperooms.joninexams.JoninExams;
+import com.escaperooms.spaceodyssey.SpaceOdyssey;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

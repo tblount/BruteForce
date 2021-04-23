@@ -1,4 +1,4 @@
-package escaperooms.application;
+package com.escaperooms.application;
 
 import java.util.ArrayList;
 import java.util.List;

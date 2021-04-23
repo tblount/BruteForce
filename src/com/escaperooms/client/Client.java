@@ -1,9 +1,9 @@
-package escaperooms.client;
+package com.escaperooms.client;
 
-import escaperooms.application.EscapeRoom;
-import escaperooms.application.Playable;
-import escaperooms.application.Traveler;
-import escaperooms.application.User;
+import com.escaperooms.application.EscapeRoom;
+import com.escaperooms.application.Playable;
+import com.escaperooms.application.Traveler;
+import com.escaperooms.application.User;
 
 import java.io.IOException;
 import java.util.*;

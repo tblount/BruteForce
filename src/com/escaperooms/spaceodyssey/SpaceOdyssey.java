@@ -1,8 +1,8 @@
-package escaperooms.spaceodyssey;
+package com.escaperooms.spaceodyssey;
 
-import escaperooms.application.EscapeRoom;
-import escaperooms.application.Playable;
-import escaperooms.application.Traveler;
+import com.escaperooms.application.EscapeRoom;
+import com.escaperooms.application.Playable;
+import com.escaperooms.application.Traveler;
 
 import java.io.IOException;
 import java.util.Scanner;

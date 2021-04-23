@@ -1,4 +1,4 @@
-package escaperooms.spaceodyssey;
+package com.escaperooms.spaceodyssey;
 
     import java.util.Scanner;
 
