@@ -1,15 +1,21 @@
 package escaperooms.crazystans;
 
-import escaperooms.application.Room;
+import escaperooms.application.EscapeRoom;
 import escaperooms.music.MusicPlayer;
 
-import java.util.List;
-
 class Lobby {
+    MusicPlayer musicPlayer = new MusicPlayer("feelitstill.wav", 500000);
 
     public Lobby() {
-        List<String> items = List.of("songKey");
-        Room room = new Room("Lobby", items);
+    }
+
+    String start() {
+        System.out.println(welcomeMessage());
+        playSong();
+        EscapeRoom.prompt("When something's unexpected, it said to be what? Listen carefully. ",
+                challengeAnswer(), "That is not the correct answer.");
+        MusicPlayer.stopMusic(musicPlayer);
+        return "songKey";
     }
 
     String welcomeMessage() {
@@ -17,8 +23,10 @@ class Lobby {
     }
 
     void playSong() {
-        MusicPlayer musicPlayer = new MusicPlayer("feelitstill.wav", 50000);
         musicPlayer.start();
-        MusicPlayer.stopMusic(musicPlayer, 6000);
+    }
+
+    String challengeAnswer() {
+        return "coming out of left field";
     }
 }

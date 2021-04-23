@@ -13,6 +13,7 @@ class Client {
     public static void main(String[] args) throws IOException {
         User user = new User();
         EscapeRoom escapeRoom = new EscapeRoom();
+        escapeRoom.load(escapeRoom);
         escapeRoom.generateEscapeRooms();
         Collection<Playable> escapeRoomCollection = escapeRoom.getEscapeRooms().values();
         List<Playable> escapeRooms = new ArrayList<>(escapeRoomCollection);

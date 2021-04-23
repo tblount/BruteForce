@@ -9,30 +9,32 @@ import escaperooms.music.MusicPlayer;
 import java.io.IOException;
 
 public class CrazyStans extends EscapeRoom {
-
     Traveler traveler;
     User user;
     Lobby lobby = new Lobby();
-    MusicPlayer musicPlayer = new MusicPlayer("crazystanswelcomemessage.wav", 50000);
+    BeyoncesRoom beyoncesRoom = new BeyoncesRoom();
+    MusicPlayer musicPlayer = new MusicPlayer("crazystanswelcomemessage.wav", 35000);
 
     public CrazyStans() throws IOException {
-
-    }
-
-    void crazyStansWelcomeMessage() {
-       musicPlayer.start();
     }
 
     @Override
     public void run(Traveler traveler, EscapeRoom escapeRoom) {
         this.traveler = traveler;
         this.user = traveler.getUser();
-//        crazyStansWelcomeMessage();
+        musicPlayer.start();
+//        musicPlayer.waitToDie();
+        musicPlayer.interrupt();
         lobbyChallenge();
+        beyonceChallenge();
     }
 
-    public void lobbyChallenge() {
-        lobby.playSong();
+    private void beyonceChallenge() {
+        user.addItem(beyoncesRoom.start());
+    }
+
+    private void lobbyChallenge() {
+        user.addItem(lobby.start());
     }
 
     @Override

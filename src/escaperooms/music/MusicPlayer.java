@@ -28,12 +28,24 @@ public class MusicPlayer extends Thread{
         }
     }
 
-    static public void stopMusic(MusicPlayer musicPlayer, long stopTime) {
+    static public void stopMusicIn(MusicPlayer musicPlayer, long stopTime) {
         try {
             Thread.sleep(stopTime);
         } catch (InterruptedException e) {
             musicPlayer.interrupt();
         }
         musicPlayer.interrupt();
+    }
+
+    static public void stopMusic(MusicPlayer musicPlayer) {
+        musicPlayer.interrupt();
+    }
+
+    public void waitToDie() {
+        try {
+            this.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
