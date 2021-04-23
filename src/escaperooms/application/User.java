@@ -33,6 +33,14 @@ public class User {
         return inventory;
     }
 
+    public void showInventory() {
+        if(inventory.size()==0){
+            System.out.println("You have nothing in your inventory");
+        }else{
+            System.out.println("You have " + inventory + " in your inventory");
+        }
+    }
+
     public void addItem(String item) {
         this.inventory.add(item);
     }
