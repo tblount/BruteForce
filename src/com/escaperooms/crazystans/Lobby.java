@@ -5,7 +5,7 @@ import com.escaperooms.application.EscapeRoom;
 import com.escaperooms.music.MusicPlayer;
 
 class Lobby {
-    MusicPlayer musicPlayer = new MusicPlayer("feelitstill.wav", 500000);
+    MusicPlayer musicPlayer = new MusicPlayer("feelitstill.wav");
 
     public Lobby() {
     }
