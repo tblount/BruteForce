@@ -1,7 +1,8 @@
-package escaperooms.crazystans;
+package com.escaperooms.crazystans;
 
-import escaperooms.application.EscapeRoom;
-import escaperooms.music.MusicPlayer;
+
+import com.escaperooms.application.EscapeRoom;
+import com.escaperooms.music.MusicPlayer;
 
 class Lobby {
     MusicPlayer musicPlayer = new MusicPlayer("feelitstill.wav", 500000);
@@ -12,9 +13,10 @@ class Lobby {
     String start() {
         System.out.println(welcomeMessage());
         playSong();
-        EscapeRoom.prompt("When something's unexpected, it said to be what? Listen carefully. ",
+        EscapeRoom.prompt("The answer is in the song. When something's unexpected, it is said to be what? Listen carefully. ",
                 challengeAnswer(), "That is not the correct answer.");
-        MusicPlayer.stopMusic(musicPlayer);
+        musicPlayer.stopMusic();
+        System.out.println(itemUnlocked());
         return "songKey";
     }
 
@@ -28,5 +30,9 @@ class Lobby {
 
     String challengeAnswer() {
         return "coming out of left field";
+    }
+
+    String itemUnlocked() {
+        return "songKey acquired";
     }
 }

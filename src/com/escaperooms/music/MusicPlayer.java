@@ -7,11 +7,10 @@ import javax.sound.sampled.*;
 
 public class MusicPlayer extends Thread{
     String song;
-    long milliseconds;
+    Clip clip;
 
-    public MusicPlayer(String song, long milliseconds) {
+    public MusicPlayer(String song) {
         this.song = song;
-        this.milliseconds = milliseconds;
     }
     public void run() {
         URL url = getClass().getResource(song);
@@ -19,26 +18,20 @@ public class MusicPlayer extends Thread{
         AudioInputStream audioStream = null;
         try {
             audioStream = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(audioStream);
             clip.start();
-            Thread.sleep(milliseconds);
+            while(clip.getMicrosecondLength() != clip.getMicrosecondPosition())
+            {
+            }
         } catch (Exception e) {
             Thread.currentThread().interrupt();
         }
     }
 
-    static public void stopMusicIn(MusicPlayer musicPlayer, long stopTime) {
-        try {
-            Thread.sleep(stopTime);
-        } catch (InterruptedException e) {
-            musicPlayer.interrupt();
-        }
-        musicPlayer.interrupt();
-    }
-
-    static public void stopMusic(MusicPlayer musicPlayer) {
-        musicPlayer.interrupt();
+    public void stopMusic() {
+        clip.stop();
+        this.interrupt();
     }
 
     public void waitToDie() {

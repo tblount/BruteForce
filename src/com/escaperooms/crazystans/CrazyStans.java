@@ -20,12 +20,10 @@ public class CrazyStans extends EscapeRoom {
 
     @Override
     public void run(Traveler traveler, EscapeRoom escapeRoom) {
-
         this.traveler = traveler;
         this.user = traveler.getUser();
         musicPlayer.start();
-//        musicPlayer.waitToDie();
-        musicPlayer.interrupt();
+        musicPlayer.waitToDie();
         lobbyChallenge();
         beyonceChallenge();
     }

@@ -1,4 +1,4 @@
-package escaperooms.crazystans;
+package com.escaperooms.crazystans;
 
 import com.escaperooms.application.EscapeRoom;
 
@@ -8,6 +8,7 @@ class BeyoncesRoom {
         System.out.println(welcomeMessage());
         EscapeRoom.prompt("What album won Beyonce's her first solo Grammy? ",
                 challengeAnswer(), "That is not the correct answer.");
+        System.out.println(itemUnlocked());
         return "beyoncesGrammy";
     }
 
@@ -16,6 +17,10 @@ class BeyoncesRoom {
     }
 
     String challengeAnswer() {
-        return "dangerously in Love";
+        return "dangerously in love";
+    }
+
+    String itemUnlocked() {
+        return "beyoncesGrammy acquired";
     }
 }
