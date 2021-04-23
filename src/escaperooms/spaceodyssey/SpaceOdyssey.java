@@ -44,7 +44,7 @@ public class SpaceOdyssey extends EscapeRoom {
     void promptInventory(Prompter prompter, Traveler traveler) {
 
         if(prompter.prompt("Do You want to see your inventory?","Y|y|N|n","Enter Valid Answer [Y]/[N]?").toUpperCase().equals("Y")) {
-            traveler.getUser().showInventory();
+            traveler.getUser().showInventory(); 
         }else{
             if (prompter.prompt("You sure?!","Y|y|N|n","Enter Valid Answer [Y]/[N]?").toUpperCase().equals("N")) traveler.getUser().showInventory();
         }
