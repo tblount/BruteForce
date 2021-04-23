@@ -1,7 +1,5 @@
 package escaperooms.application;
 
-import escaperooms.application.EscapeRoom;
-
 public class Playable {
 
     String name;

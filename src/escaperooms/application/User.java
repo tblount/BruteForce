@@ -5,6 +5,7 @@ import java.util.List;
 
 public class User {
 
+    String name;
     String currentRoom;
     long startTime = System.currentTimeMillis();
     int points = 0;
@@ -31,6 +32,14 @@ public class User {
 
     public List<String> getInventory() {
         return inventory;
+    }
+
+    public void showInventory() {
+        if(inventory.size()==0){
+            System.out.println("You have nothing in your inventory");
+        }else{
+            System.out.println("You have " + inventory + " in your inventory");
+        }
     }
 
     public void addItem(String item) {
@@ -71,6 +80,14 @@ public class User {
 
     public boolean hasAnswer(String answer){
         return this.answers.contains(answer);
+    }
+
+    public void newName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
 
 }
