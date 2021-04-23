@@ -60,7 +60,7 @@ public class Room {
     }
 
     public void setActors(List<Actor> actors) {
-        this.actors = actors;
+        this.actors = actors; 
     }
 
     public String getName() {
