@@ -1,6 +1,6 @@
 package escaperooms.crazystans;
 
-import escaperooms.application.EscapeRoom;
+import com.escaperooms.application.EscapeRoom;
 
 class BeyoncesRoom {
 
