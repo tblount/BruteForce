@@ -13,7 +13,7 @@ public class CrazyStans extends EscapeRoom {
     User user;
     Lobby lobby = new Lobby();
     BeyoncesRoom beyoncesRoom = new BeyoncesRoom();
-    MusicPlayer musicPlayer = new MusicPlayer("crazystanswelcomemessage.wav", 35000);
+    MusicPlayer musicPlayer = new MusicPlayer("crazystanswelcomemessage.wav");
 
     public CrazyStans() throws IOException {
     }
