@@ -1,4 +1,4 @@
-package escaperooms.application;
+package com.escaperooms.application;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,12 +39,20 @@ public class Room {
         this.items = items;
     }
 
+    public void removeItem(String item) {
+        items.remove(item);
+    }
+
     public List<String> getUsefulItems() {
         return usefulItems;
     }
 
     public void setUsefulItems(List<String> usefulItems) {
         this.usefulItems = usefulItems;
+    }
+
+    public void removeUsefulItem(String item) {
+        usefulItems.remove(item);
     }
 
     public List<Actor> getActors() {

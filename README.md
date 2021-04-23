@@ -1,5 +1,5 @@
 # BruteForce
 Team 3
-GAME - The escaperooms.application.Traveler
+GAME - The Traveler
 
 Authors: Nick, Shawn, and Terrance

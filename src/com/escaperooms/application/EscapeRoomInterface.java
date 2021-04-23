@@ -1,4 +1,4 @@
-package escaperooms.application;
+package com.escaperooms.application;
 
 import java.io.IOException;
 

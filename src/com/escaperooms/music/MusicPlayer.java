@@ -1,4 +1,4 @@
-package escaperooms.music;
+package com.escaperooms.music;
 
 import java.io.File;
 import java.net.URL;

@@ -1,6 +1,4 @@
-package escaperooms.application;
-
-import escaperooms.application.EscapeRoom;
+package com.escaperooms.application;
 
 public class Playable {
 

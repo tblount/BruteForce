@@ -1,4 +1,4 @@
-package escaperooms.application;
+package com.escaperooms.application;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class Traveler {
         return this.user;
     }
 
-    List<Playable> getRooms() {
+    public List<Playable> getRooms() {
         return escapeRooms;
     }
 }

@@ -1,10 +1,10 @@
-package escaperooms.crazystans;
+package com.escaperooms.crazystans;
 
-import escaperooms.application.EscapeRoom;
-import escaperooms.application.Playable;
-import escaperooms.application.Traveler;
-import escaperooms.application.User;
-import escaperooms.music.MusicPlayer;
+import com.escaperooms.application.EscapeRoom;
+import com.escaperooms.application.Playable;
+import com.escaperooms.application.Traveler;
+import com.escaperooms.application.User;
+import com.escaperooms.music.MusicPlayer;
 
 import java.io.IOException;
 
@@ -20,6 +20,7 @@ public class CrazyStans extends EscapeRoom {
 
     @Override
     public void run(Traveler traveler, EscapeRoom escapeRoom) {
+
         this.traveler = traveler;
         this.user = traveler.getUser();
         musicPlayer.start();
