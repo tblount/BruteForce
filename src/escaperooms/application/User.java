@@ -5,6 +5,7 @@ import java.util.List;
 
 public class User {
 
+    String name;
     String currentRoom;
     long startTime = System.currentTimeMillis();
     int points = 0;
@@ -79,6 +80,14 @@ public class User {
 
     public boolean hasAnswer(String answer){
         return this.answers.contains(answer);
+    }
+
+    public void newName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
 
 }
