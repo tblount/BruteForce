@@ -10,7 +10,7 @@ public class Room {
     Map<String, String> directions = new HashMap<>();
     List<String> items = new ArrayList<>();
     List<String> usefulItems = new ArrayList<>();
-    List<Actor> actors = new ArrayList<>();
+    List<String> actors = new ArrayList<>();
 
     public Room(String name) {
         setName(name);
@@ -26,7 +26,7 @@ public class Room {
         setUsefulItems(usefulItems);
     }
 
-    public Room(String name, List<String> items, List<String> usefulItems, List<Actor> actors) {
+    public Room(String name, List<String> items, List<String> usefulItems, List<String> actors) {
         this(name, items, usefulItems);
         setActors(actors);
     }
@@ -55,11 +55,11 @@ public class Room {
         usefulItems.remove(item);
     }
 
-    public List<Actor> getActors() {
+    public List<String> getActors() {
         return actors;
     }
 
-    public void setActors(List<Actor> actors) {
+    public void setActors(List<String> actors) {
         this.actors = actors;
     }
 

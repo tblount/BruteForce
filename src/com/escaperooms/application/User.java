@@ -1,5 +1,7 @@
 package com.escaperooms.application;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +16,17 @@ public class User {
     boolean winOrLose;
 
 
-    public long getEndTime() {
-        return System.currentTimeMillis() - startTime;
+    public double getEndTime() {
+        long secs = (System.currentTimeMillis() - startTime)/1000;
+        double mins = secs/60;
+        return mins;
+    }
+    public void getFinishTime() {
+        long secs = (System.currentTimeMillis() - startTime)/1000;
+        int mins = (int) Math.floor(secs/60);
+        System.out.println(
+                "Time : "+mins+" minutes and "+secs+" seconds"
+        );
     }
 
     public int getPoints() {
@@ -43,6 +54,7 @@ public class User {
     }
 
     public void addItem(String item) {
+        System.out.println(name+ " Obtained "+item);
         this.inventory.add(item);
     }
 
@@ -90,4 +102,7 @@ public class User {
         return name;
     }
 
+    public String getCurrentRoom() {
+        return currentRoom;
+    }
 }

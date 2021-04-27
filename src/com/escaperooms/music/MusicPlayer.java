@@ -15,7 +15,7 @@ public class MusicPlayer extends Thread{
     public void run() {
         URL url = getClass().getResource(song);
         File file = new File(url.getPath());
-        AudioInputStream audioStream = null;
+        AudioInputStream audioStream;
         try {
             audioStream = AudioSystem.getAudioInputStream(file);
             clip = AudioSystem.getClip();
