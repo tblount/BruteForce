@@ -11,7 +11,7 @@ class MichaelJacksonsRoom {
     }
 
     String welcomeMessage() {
-        return "Welcome to the Crazy Stans Beyonce room.";
+        return "Welcome to the Crazy Stans' Michael Jackson room.";
     }
 
     String challengeAnswer() {

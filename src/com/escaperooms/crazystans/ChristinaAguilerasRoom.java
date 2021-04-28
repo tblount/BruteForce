@@ -17,6 +17,7 @@ class ChristinaAguilerasRoom {
     }
 
     private void challengeOneSoar() {
+        EscapeRoom.prompt("Type 'start' to begin the challenge ", "start", "Invalid command");
         MusicPlayer musicPlayer = startSong("soar.wav");
         EscapeRoom.prompt("What word is the highest note hit in this sequence? ",
                 answers.get("challengeOneSoar"), "That is not the correct answer.");
@@ -24,6 +25,7 @@ class ChristinaAguilerasRoom {
     }
 
     private void challengeTwoIWillBe() {
+        EscapeRoom.prompt("Type 'start' to begin the challenge ", "start", "Invalid command");
         MusicPlayer musicPlayer = startSong("iwillbe.wav");
         EscapeRoom.prompt("Unreleased as apart of the Stripped album, the greatest album of all time, what is the name of this song? ",
                 answers.get("challengeTwoIWillBe"), "That is not the correct answer.");
@@ -34,7 +36,7 @@ class ChristinaAguilerasRoom {
         return "Welcome to Crazy Stans' Christina Aguilera Room. You have been allowed entry into the GOAT's room " +
                 "because you have acquired the items from those that aspire to be the GOAT but are not quite there, \n " +
                 "and a legend from the past. Here you will be faced with three challenges, the most difficult you have \n" +
-                "faced. Solve all 3 challenges, and you will be granted with the mic of the great one.";
+                "faced. Solve both challenges, and you will be granted with the mic of the great one.";
     }
 
 
