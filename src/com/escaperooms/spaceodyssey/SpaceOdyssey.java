@@ -46,49 +46,87 @@ public class SpaceOdyssey extends EscapeRoom {
             describeRoom(user.getCurrentRoom(), escapeRoom);
             Room userCurrentRoom = escapeRoom.innerRooms.get("Space Odyssey : "+user.getCurrentRoom());
 
-            String[] choice = prompter.prompt("Do Something!\n\uD83D\uDE80").toUpperCase().split(" ");
-            switch(choice[0]){
-                case "INVENTORY" : traveler.getUser().showInventory(); break;
-                case "JUMP" : if(choice.length>1){
-                    user.move(choice[1]);
-                } break;
-                case "GET": if(userCurrentRoom.hasItem(choice[1])){
+            String inputAction = prompter.prompt("What do you want to do?\n\uD83D\uDE80").toUpperCase();
+            String[] choice = inputAction.split(" ");
+                    switch(choice[0]){
+                case "INVENTORY" : traveler.getUser().showInventory(); prompter.prompt("Press Enter to Continue"); break;
+                        case "TAKE":
+                        case "GRAB":
+                        case "GET": if(userCurrentRoom.hasItem(choice[1])){
                     user.addItem(choice[1]);
                     userCurrentRoom.removeItem(choice[1]);
                 }else{
                     System.out.println("Can't get "+choice[1]);
-                } break;
-                case "GO":
-                    if(choice.length>1){
-                        switch(choice[1]){
-                            case "CAVE": user.move("CAVE"); break;
-                            case "KITCHEN": user.move("KITCHEN"); break;
-                            default:
-                                System.out.println("Can't go to "+choice[1]); break;
+                } prompter.prompt("Press Enter to Continue\n"); break;
+                        case "CLIMB":
+                        case "SWIM":
+                        case "WALK":
+                        case "RUN":
+                        case "GO":
+                    if(choice.length>=2){
+                        if (choice[1].equals("TO")){
+                            String room = inputAction.substring(6);
+                            if(userCurrentRoom.hasDoor(room)){
+                                user.move(room);
+                            }else{
+                                System.out.println("Can't go to "+room);
+                            }
+                        }else{
+                            String room = inputAction.substring(3);
+                            if(userCurrentRoom.hasDoor(room)){
+                                user.move(room);
+                            }else{
+                                System.out.println("Can't go to "+room);
+                            }
                         }
-                    } break;
-                case "USE":
-                    if(choice.length>1 && userCurrentRoom.hasUsefulItem(choice[1])&& user.isItemInInventory(choice[1])){
+                    } prompter.prompt("Press Enter to Continue\n"); break;
+                        case "THROW":
+                        case "TRY":
+                        case "PUSH":
+                        case "PULL":
+                        case "KICK":
+                        case "FIX":
+                        case "CLEAN":
+                        case "USE":
+                    if(choice.length>1 && userCurrentRoom.hasUsefulItem(choice[1]) && user.isItemInInventory(choice[1])){
                         tryNarrate(choice[1],1);
                         userCurrentRoom.removeUsefulItem(choice[1]);
+                        user.addAnswer(choice[1]);
                     }else{
                         System.out.println("Can't use "+choice[1]);
-                    } break;
+                    } prompter.prompt("Press Enter to Continue\n"); break;
                 case "TALK":
                     if(choice.length>1 && userCurrentRoom.hasActor(choice[choice.length-1])){
-                        tryNarrate(choice[choice.length-1],1);
-                        new MusicPlayer(choice[choice.length-1].toUpperCase()+"0.wav").start();
+                        if(user.isCurrentRoom("KITCHEN") && user.hasAnswer("ROCK") && user.hasAnswer("MATCH") && !user.hasAnswer("APRON") ){
+                            tryNarrate(choice[choice.length-1],2);
+                            System.out.println("But you're not a chef, so GET OUT OF MY KITCHEN!");
+                            new MusicPlayer("soup.wav").start();
+                            user.getFinishTime();
+                            running = false;
+                            break;
+                        }else if(user.isCurrentRoom("KITCHEN") && user.hasAnswer("ROCK") && user.hasAnswer("MATCH") && user.hasAnswer("APRON") ){
+                            tryNarrate(choice[choice.length-1],2);
+                            user.addItem("Golden Spatula");
+                            System.out.println("Before you have to thank them, you are sucked into a time loop");
+                            prompter.prompt("Press Enter to Continue\n");
+                            running = false;
+                            EscapeRoom stan = traveler.getRooms().get(1).getEscapeRoom();
+                            stan.run(traveler,escapeRoom);
+                        }
+                        else{
+                            tryNarrate(choice[choice.length-1],1);
+                            tryPlayConvo(choice[choice.length-1]);
+                        }
                     }else{
-                        System.out.println("Can't use "+choice[1]);
+                        System.out.println("Can't talk to "+choice[choice.length-1]);
                     }
-                    prompter.prompt("Press Enter"); break;
+                    prompter.prompt("Press Enter to Continue\n"); break;
                 case "QUIT" :running = false; break;
                 default:
-                    System.out.println("I don't understand that command :"+choice[0]); break;
+                    System.out.println("I don't understand that command :"+choice[0]); prompter.prompt("Press Enter to Continue\n"); break;
             }
 
         }
-        System.out.println("Stay Tuned For more game");
     }
 
     @Override
@@ -96,27 +134,20 @@ public class SpaceOdyssey extends EscapeRoom {
 
     }
 
-    void jump() throws IOException {
-        EscapeRoom room = getEscapeRoom("Crazy Stans");
-        traveler.jump(room);
+    void tryPlayConvo(String convo){
+        try{
+            new MusicPlayer(convo+"0.wav").start();
+        }catch(Exception e){
+            System.out.println("I don't understand "+convo+" or maybe I can't find my dictionary");
+        }
     }
 
-    void promptRoomChange(Prompter prompter, Traveler traveler, EscapeRoom escapeRoom){
-
-        if(prompter.prompt("Do you want to go to Crazy Stans?\n\uD83D\uDE80","Y|y|N|n","Enter Valid Answer [Y]/[N]?").toUpperCase().equals("Y")) {
-            System.out.println("Teleporting now");
-            EscapeRoom stan = traveler.getRooms().get(1).getEscapeRoom();
-            stan.run(traveler,escapeRoom);
-            running = false;
-        }else{
-            if(prompter.prompt("Do you want to go to Jonin Exams?\n\uD83D\uDE80","Y|y|N|n","Enter Valid Answer [Y]/[N]?").toUpperCase().equals("Y")) {
-                System.out.println("Flying Raijin Jutsu!");
-                EscapeRoom exams = traveler.getRooms().get(0).getEscapeRoom();
-                exams.run(traveler,escapeRoom);
-                running = false;
-            }
+    void tryPlayConvo(String convo,int index){
+        try{
+            new MusicPlayer(convo+index+".wav").start();
+        }catch(Exception e){
+            System.out.println("I don't understand "+convo+" or maybe I can't find my dictionary");
         }
-
     }
 
     void tryNarrate(String item){
@@ -139,14 +170,27 @@ public class SpaceOdyssey extends EscapeRoom {
         tryNarrate(currentRoom);
         Room userCurrentRoom = escapeRoom.innerRooms.get("Space Odyssey : "+currentRoom);
         for(String item : userCurrentRoom.getItems()){
-            tryNarrate(item,0);
+            if(item.length()>1){
+                tryNarrate(item,0);
+            }
         }
         for(String actor : userCurrentRoom.getActors()){
-            tryNarrate(actor,0);
+            if(actor.length()>1){
+                tryNarrate(actor,0);
+            }
         }
-        for(String actor : userCurrentRoom.getUsefulItems()){
-            tryNarrate(actor,2);
+        for(String item : userCurrentRoom.getUsefulItems()){
+            if(item.length()>1){
+                tryNarrate(item,2);
+            }
         }
+        if(userCurrentRoom.getDoors().size()==1){
+            System.out.println("You can go to "+userCurrentRoom.getDoors()+ ".");
+        }
+        if(userCurrentRoom.getDoors().size()>1){
+            System.out.println("You can go to "+userCurrentRoom.getDoors().subList(0,userCurrentRoom.getDoors().size()-1)+ " or "+userCurrentRoom.getDoors().get(userCurrentRoom.getDoors().size()-1)+".");
+        }
+
     }
 
 

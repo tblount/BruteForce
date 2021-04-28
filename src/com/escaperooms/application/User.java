@@ -22,7 +22,7 @@ public class User {
         return mins;
     }
     public void getFinishTime() {
-        long secs = (System.currentTimeMillis() - startTime)/1000;
+        long secs = ((System.currentTimeMillis() - startTime)/1000)%60;
         int mins = (int) Math.floor(secs/60);
         System.out.println(
                 "Time : "+mins+" minutes and "+secs+" seconds"
