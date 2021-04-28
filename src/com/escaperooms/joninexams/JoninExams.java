@@ -33,12 +33,11 @@ public class JoninExams extends EscapeRoom {
 
     @Override
     public Playable playable() throws IOException {
-        return new Playable("Jonin Exams", "Welcome to Jonin Exams", new JoninExams());
+        return new Playable(getName(), "Welcome to Jonin Exams", new JoninExams());
     }
 
-    void jump() throws IOException {
-        EscapeRoom room = getEscapeRoom("Space Odyssey");
-        traveler.jump(room);
+    void jump(){
+        traveler.menu();
     }
 
     void welcome() {
@@ -53,5 +52,10 @@ public class JoninExams extends EscapeRoom {
         System.out.println("Hello there! Welcome to the Jonin Exams");
         String name = input.prompt("What is your name?");
         String home = input.prompt("OK..." + name + " What village are you from? " + villages);
+    }
+
+    @Override
+    public String getName() {
+        return "Jonin Exams";
     }
 }

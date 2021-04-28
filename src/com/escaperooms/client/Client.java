@@ -10,10 +10,10 @@ class Client {
     public static void main(String[] args) throws IOException {
         User user = new User();
         EscapeRoom escapeRoom = new EscapeRoom();
+        escapeRoom.generateEscapeRooms(escapeRoom);
         String name = EscapeRoom.prompt("Please enter your name: ", "[a-zA-z]*",
                 "\nThat is not a valid name!\n");
         user.newName(name);
-        escapeRoom.generateEscapeRooms();
         Traveler traveler = new Traveler(user, escapeRoom);
         traveler.menu();
     }

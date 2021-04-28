@@ -22,7 +22,7 @@ public class SpaceOdyssey extends EscapeRoom {
     }
 
     public Playable playable()  throws IOException {
-        return new Playable("Space Odyssey", "Welcome to Space Odyssey", new SpaceOdyssey());
+        return new Playable(getName(), "Welcome to Space Odyssey", new SpaceOdyssey());
     }
 
     @Override
@@ -191,6 +191,11 @@ public class SpaceOdyssey extends EscapeRoom {
             System.out.println("You can go to "+userCurrentRoom.getDoors().subList(0,userCurrentRoom.getDoors().size()-1)+ " or "+userCurrentRoom.getDoors().get(userCurrentRoom.getDoors().size()-1)+".");
         }
 
+    }
+
+    @Override
+    public String getName() {
+        return "Space Odyssey";
     }
 
 
