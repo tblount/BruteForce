@@ -8,9 +8,9 @@ public interface EscapeRoomInterface {
     }
 
     default void run(Traveler traveler, EscapeRoom escapeRoom) {
-
     }
     default void terminate() {
-
     }
+
+    String getName();
 }

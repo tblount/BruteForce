@@ -1,20 +1,20 @@
 package com.escaperooms.application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Traveler {
-    List<Playable> escapeRooms;
     User user;
     EscapeRoom escapeRoom;
 
 
-    public Traveler(User user, List<Playable> escapeRooms, EscapeRoom escapeRoom) {
-        this.escapeRooms = escapeRooms;
+    public Traveler(User user, EscapeRoom escapeRoom) {
         this.user = user;
         this.escapeRoom = escapeRoom;
     }
 
     public void jump(EscapeRoom room) {
+        escapeRoom.removeEscapeRoom(room.getName());
         room.run(this, escapeRoom);
     }
 
@@ -23,6 +23,27 @@ public class Traveler {
     }
 
     public List<Playable> getRooms() {
-        return escapeRooms;
+        return new ArrayList<>(escapeRoom.getEscapeRooms().values());
+    }
+
+    private boolean isEscapeRoomCompleted() {
+        return getRooms().size() <= 0;
+    }
+
+    public void menu() {
+        List<Playable> availableRooms = getRooms();
+        if(!isEscapeRoomCompleted()) {
+            for(int i = 0; i < availableRooms.size(); i++) {
+                System.out.println(i + ": " + availableRooms.get(i).getName());
+            }
+            String selection = EscapeRoom.prompt("Select a room to start in.", "[0-" + availableRooms.size() + "]", "Invalid choice.");
+            int choice = Integer.parseInt(selection);
+            EscapeRoom room = availableRooms.get(choice).getEscapeRoom();
+            jump(room);
+        } else {
+            System.out.println("All rooms completed! You won!");
+            System.exit(0);
+        }
+
     }
 }

@@ -34,10 +34,10 @@ public class EscapeRoom implements EscapeRoomInterface {
             String roomName = roomDataCells[1];
             List<String> roomItems = Arrays.stream(roomDataCells[2].split(" ~ ")).collect(Collectors.toList());
             List<String> roomUsefulItems = Arrays.stream(roomDataCells[3].split(" ~ ")).collect(Collectors.toList());
-            List <String> actorNames = Arrays.stream(roomDataCells[4].split(" ~ ")).collect(Collectors.toList());
+            List<String> actorNames = Arrays.stream(roomDataCells[4].split(" ~ ")).collect(Collectors.toList());
 
-            Room currentRoom = new Room(roomName,roomItems,roomUsefulItems,actorNames);
-            allRooms.put(gameName + " : " + roomName,currentRoom);
+            Room currentRoom = new Room(roomName, roomItems, roomUsefulItems, actorNames);
+            allRooms.put(gameName + " : " + roomName, currentRoom);
         });
         return allRooms;
 
@@ -45,18 +45,26 @@ public class EscapeRoom implements EscapeRoomInterface {
     }
 
     public void generateEscapeRooms() throws IOException {
-        escapeRooms.put("Space Odyssey", new SpaceOdyssey().playable());
-        escapeRooms.put("Crazy Stans", new CrazyStans().playable());
-        escapeRooms.put("Jonin Exams", new JoninExams().playable());
+        SpaceOdyssey spaceOdyssey = new SpaceOdyssey();
+        CrazyStans crazyStans = new CrazyStans();
+        JoninExams joninExams = new JoninExams();
+        escapeRooms.put(spaceOdyssey.getName(), spaceOdyssey.playable());
+        escapeRooms.put(crazyStans.getName(), crazyStans.playable());
+        escapeRooms.put(joninExams.getName(), joninExams.playable());
     }
 
     public Map<String, Playable> getEscapeRooms() {
         return escapeRooms;
     }
 
+
     public EscapeRoom getEscapeRoom(String room) {
         Map<String, Playable> playables = getEscapeRooms();
         return playables.get(room).getEscapeRoom();
+    }
+
+    public void removeEscapeRoom(String room) {
+        escapeRooms.remove(room);
     }
 
     public static String prompt(String message, String regex, String errorMessage) {
@@ -71,5 +79,10 @@ public class EscapeRoom implements EscapeRoomInterface {
     }
 
     private void quitGame() {
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 }
