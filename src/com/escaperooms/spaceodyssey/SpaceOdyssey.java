@@ -100,7 +100,7 @@ public class SpaceOdyssey extends EscapeRoom {
                         if(user.isCurrentRoom("KITCHEN") && user.hasAnswer("ROCK") && user.hasAnswer("MATCH") && !user.hasAnswer("APRON") ){
                             tryNarrate(choice[choice.length-1],2);
                             System.out.println("But you're not a chef, so GET OUT OF MY KITCHEN!");
-                            prompter.prompt("Press Enter to Continue")
+                            prompter.prompt("Press Enter to Continue");
                             new MusicPlayer("soup.wav").start();
                             running = false;
                             traveler.menu();
