@@ -13,4 +13,6 @@ public interface EscapeRoomInterface {
     default void terminate() {
 
     }
+
+    String getName();
 }

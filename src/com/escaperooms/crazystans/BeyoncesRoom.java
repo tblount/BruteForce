@@ -6,9 +6,8 @@ class BeyoncesRoom {
 
     String start() {
         System.out.println(welcomeMessage());
-        EscapeRoom.prompt("What album won Beyonce's her first solo Grammy? ",
+        EscapeRoom.prompt("What album won Beyonce her first solo Grammy? ",
                 challengeAnswer(), "That is not the correct answer.");
-        System.out.println(itemUnlocked());
         return "beyoncesGrammy";
     }
 
@@ -20,7 +19,4 @@ class BeyoncesRoom {
         return "dangerously in love";
     }
 
-    String itemUnlocked() {
-        return "beyoncesGrammy acquired";
-    }
 }

@@ -10,7 +10,8 @@ public class Room {
     Map<String, String> directions = new HashMap<>();
     List<String> items = new ArrayList<>();
     List<String> usefulItems = new ArrayList<>();
-    List<Actor> actors = new ArrayList<>();
+    List<String> actors = new ArrayList<>();
+    List<String> doors = new ArrayList<>();
 
     public Room(String name) {
         setName(name);
@@ -26,9 +27,34 @@ public class Room {
         setUsefulItems(usefulItems);
     }
 
-    public Room(String name, List<String> items, List<String> usefulItems, List<Actor> actors) {
+    public Room(String name, List<String> items, List<String> usefulItems, List<String> actors) {
         this(name, items, usefulItems);
         setActors(actors);
+    }
+
+    public Room(String name, List<String> items, List<String> usefulItems, List<String> actors, List<String> doors) {
+        this(name, items, usefulItems,actors);
+        setDoors(doors);
+    }
+
+    public void setDoors(List<String> doors) {
+        this.doors = doors;
+    }
+
+    public List<String> getDoors() {
+        return this.doors;
+    }
+
+    public void addDoor(String door) {
+        this.doors.add(door);
+    }
+
+    public void removeDoor(String door) {
+        this.doors.remove(door);
+    }
+
+    public boolean hasDoor(String door) {
+        return this.doors.contains(door);
     }
 
     public List<String> getItems() {
@@ -55,11 +81,11 @@ public class Room {
         usefulItems.remove(item);
     }
 
-    public List<Actor> getActors() {
+    public List<String> getActors() {
         return actors;
     }
 
-    public void setActors(List<Actor> actors) {
+    public void setActors(List<String> actors) {
         this.actors = actors;
     }
 

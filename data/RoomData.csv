@@ -1,4 +1,9 @@
-SpaceOdyssey : Kitchen : Knife ~ Apron : Match ~ Rock : Chef : ActorLine1 ~ ActorLine2
-SpaceOdyssey : Cave : Rock ~ Match : Knife ~ Apron : Yogi : ActorLine1 ~ ActorLine2
-Jonin Exams : RoomName : Item1 ~ Item2 : UsefulItem1 ~ UsefulItem2 : ActorName1 : ActorLine1 ~ ActorLine2
-Crazy Stan : RoomName : Item1 ~ Item2 : UsefulItem1 ~ UsefulItem2 : ActorName1 : ActorLine1 ~ ActorLine2
+Jonin Exams : RoomName : Item1 ~ Item2 : UsefulItem1 ~ UsefulItem2 : ActorName ~ ActorName : RoomName ~ RoomName
+Crazy Stan : RoomName : Item1 ~ Item2 : UsefulItem1 ~ UsefulItem2 : ActorName ~ ActorName : RoomName ~ RoomName
+Space Odyssey : KITCHEN : APRON : MATCH ~ ROCK : CHEF : STOCK ROOM
+Space Odyssey : STOCK ROOM : ROCK ~ MATCH : APRON : APPRENTICE : KITCHEN ~ DORMS
+Space Odyssey : COCK PIT :  :  :  : ENGINE ROOM ~ DORMS
+Space Odyssey : ENGINE ROOM :  :  :  : ESCAPE HATCH ~ COCK PIT
+Space Odyssey : DORMS :  :  :  : COCK PIT
+Space Odyssey : ESCAPE HATCH :  :  :  : ENGINE ROOM
+Space Odyssey : POD :  :  :  : ESCAPE HATCH

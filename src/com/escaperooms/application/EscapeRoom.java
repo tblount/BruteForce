@@ -16,17 +16,17 @@ import java.util.stream.Collectors;
 public class EscapeRoom implements EscapeRoomInterface {
     private static final EscapeRoomPrompter escapeRoomPrompter = new EscapeRoomPrompter();
     Map<String, Playable> escapeRooms = new HashMap<>();
-    Map<String, Room> innerRooms = new HashMap<>();
+    public Map<String, Room> innerRooms;
     private static EscapeRoom me;
 
     public EscapeRoom() throws IOException {
-//        this.load();
+        this.innerRooms = this.load();
 
     }
 
-    public void load(EscapeRoom escapeRoom) throws IOException {
-        me = escapeRoom;
-//        Path descriptionPath = Path.of("data/Descriptions.csv");
+    public Map<String, Room> load() throws IOException {
+
+        Map<String, Room> allRooms = new HashMap<>();
         Path path = Paths.get("data/RoomData.csv");
         Files.readAllLines(path.toAbsolutePath(), StandardCharsets.UTF_8).forEach(roomData -> {
             String[] roomDataCells = roomData.split(" : ");
@@ -35,43 +35,38 @@ public class EscapeRoom implements EscapeRoomInterface {
             List<String> roomItems = Arrays.stream(roomDataCells[2].split(" ~ ")).collect(Collectors.toList());
             List<String> roomUsefulItems = Arrays.stream(roomDataCells[3].split(" ~ ")).collect(Collectors.toList());
             List<String> actorNames = Arrays.stream(roomDataCells[4].split(" ~ ")).collect(Collectors.toList());
-            System.out.println(actorNames);
-            List<String> scripts = Arrays.stream(roomDataCells[5].split(" - ")).collect(Collectors.toList());
+            List <String> doors = Arrays.stream(roomDataCells[5].split(" ~ ")).collect(Collectors.toList());
 
-            List<Actor> listActors = new ArrayList<>();
-            for (int i = 0; i < actorNames.size() - 1; i++) {
-                List<String> script = Arrays.stream(scripts.get(i).split(" ~ ")).collect(Collectors.toList());
-                listActors.add(new Actor(actorNames.get(i), script));
-            }
-            Room currentRoom = new Room(roomName, roomItems, roomUsefulItems, listActors);
-            this.innerRooms.put(gameName + " : " + roomName, currentRoom);
+            Room currentRoom = new Room(roomName, roomItems, roomUsefulItems, actorNames,doors);
+            allRooms.put(gameName + " : " + roomName, currentRoom);
         });
+        return allRooms;
 
-        System.out.println(this.innerRooms);
 
     }
 
-    public void generateEscapeRooms() throws IOException {
-        escapeRooms.put("Space Odyssey", new SpaceOdyssey().playable());
-        escapeRooms.put("Crazy Stans", new CrazyStans().playable());
-        escapeRooms.put("Jonin Exams", new JoninExams().playable());
+    public void generateEscapeRooms(EscapeRoom room) throws IOException {
+        me = room;
+        SpaceOdyssey spaceOdyssey = new SpaceOdyssey();
+        CrazyStans crazyStans = new CrazyStans();
+        JoninExams joninExams = new JoninExams();
+        escapeRooms.put(spaceOdyssey.getName(), spaceOdyssey.playable());
+        escapeRooms.put(crazyStans.getName(), crazyStans.playable());
+        escapeRooms.put(joninExams.getName(), joninExams.playable());
     }
 
     public Map<String, Playable> getEscapeRooms() {
         return escapeRooms;
     }
 
+
     public EscapeRoom getEscapeRoom(String room) {
         Map<String, Playable> playables = getEscapeRooms();
         return playables.get(room).getEscapeRoom();
     }
 
-    public static void main(String[] args) throws IOException {
-        EscapeRoom yoo = new EscapeRoom();
-        System.out.println(yoo.innerRooms.get("SpaceOdyssey : Kitchen").getItems());
-        System.out.println(yoo.innerRooms.get("SpaceOdyssey : Kitchen").getUsefulItems());
-        System.out.println(yoo.innerRooms.get("SpaceOdyssey : Kitchen").getActors());
-        yoo.innerRooms.get("SpaceOdyssey : Kitchen").getActors();
+    public void removeEscapeRoom(String room) {
+        escapeRooms.remove(room);
     }
 
     public static String prompt(String message, String regex, String errorMessage) {
@@ -86,5 +81,12 @@ public class EscapeRoom implements EscapeRoomInterface {
     }
 
     private void quitGame() {
+        System.out.println("Quitting game...");
+        System.exit(0);
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 }

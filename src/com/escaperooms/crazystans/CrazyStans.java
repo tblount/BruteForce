@@ -9,23 +9,52 @@ import com.escaperooms.music.MusicPlayer;
 import java.io.IOException;
 
 public class CrazyStans extends EscapeRoom {
-    Traveler traveler;
+    private final String name = "Crazy Stans";
+    private Traveler traveler;
     User user;
     Lobby lobby = new Lobby();
     BeyoncesRoom beyoncesRoom = new BeyoncesRoom();
-    MusicPlayer musicPlayer = new MusicPlayer("crazystanswelcomemessage.wav");
+    ArianasRoom arianasRoom = new ArianasRoom();
+    MichaelJacksonsRoom michaelJacksonsRoom = new MichaelJacksonsRoom();
+    ChristinaAguilerasRoom christinaAguilerasRoom = new ChristinaAguilerasRoom();
+    MusicPlayer musicPlayer;
 
     public CrazyStans() throws IOException {
     }
 
     @Override
     public void run(Traveler traveler, EscapeRoom escapeRoom) {
+        musicPlayer = new MusicPlayer("stansbgm.wav");
         this.traveler = traveler;
         this.user = traveler.getUser();
+        user.newName("Nick");
+        opening();
+        challenges();
+        closing();
+    }
+
+    private void opening() {
         musicPlayer.start();
-        musicPlayer.waitToDie();
+        System.out.println(welcomeMessage());
+        EscapeRoom.prompt("Type 'start' to begin the challenges ", "start", "Invalid command");
+        musicPlayer.stopMusic();
+    }
+
+    private void challenges() {
         lobbyChallenge();
-        beyonceChallenge();
+        if(user.getInventory().contains("match") || user.getInventory().contains("leaf headband")) {
+            System.out.println("Beyonce is also a hidden leaf ninja, she has allowed you to skip her room and endowed you with one of her many grammys.");
+            user.addItem("beyoncesGrammy");
+        } else {
+            beyonceChallenge();
+        }
+        arianaChallenge();
+        michaelJacksonChallenge();
+        christinaAguileraChallenge();
+    }
+
+    private void closing() {
+        traveler.menu();
     }
 
     private void beyonceChallenge() {
@@ -36,6 +65,27 @@ public class CrazyStans extends EscapeRoom {
         user.addItem(lobby.start());
     }
 
+    private void arianaChallenge() {
+        user.addItem(arianasRoom.start());
+    }
+
+    private void michaelJacksonChallenge() {
+        user.addItem(michaelJacksonsRoom.start());
+    }
+
+    private void christinaAguileraChallenge() {
+        user.addItem(christinaAguilerasRoom.start());
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    private String welcomeMessage() {
+        return "Welcome to " + name + ".";
+    }
+
+
     @Override
     public void terminate() {
 
@@ -43,6 +93,6 @@ public class CrazyStans extends EscapeRoom {
 
     @Override
     public Playable playable() throws IOException {
-        return new Playable("Crazy Stans", "Welcome to Stans", new CrazyStans());
+        return new Playable(this.getName(), welcomeMessage(), new CrazyStans());
     }
 }
