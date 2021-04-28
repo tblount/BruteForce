@@ -42,7 +42,12 @@ public class CrazyStans extends EscapeRoom {
 
     private void challenges() {
         lobbyChallenge();
-        beyonceChallenge();
+        if(user.getInventory().contains("match") || user.getInventory().contains("leaf headband")) {
+            System.out.println("Beyonce is also a hidden leaf ninja, she has allowed you to skip her room and endowed you with one of her many grammys.");
+            user.addItem("beyoncesGrammy");
+        } else {
+            beyonceChallenge();
+        }
         arianaChallenge();
         michaelJacksonChallenge();
         christinaAguileraChallenge();
