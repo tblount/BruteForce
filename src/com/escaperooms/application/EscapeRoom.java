@@ -35,8 +35,9 @@ public class EscapeRoom implements EscapeRoomInterface {
             List<String> roomItems = Arrays.stream(roomDataCells[2].split(" ~ ")).collect(Collectors.toList());
             List<String> roomUsefulItems = Arrays.stream(roomDataCells[3].split(" ~ ")).collect(Collectors.toList());
             List<String> actorNames = Arrays.stream(roomDataCells[4].split(" ~ ")).collect(Collectors.toList());
+            List <String> doors = Arrays.stream(roomDataCells[5].split(" ~ ")).collect(Collectors.toList());
 
-            Room currentRoom = new Room(roomName, roomItems, roomUsefulItems, actorNames);
+            Room currentRoom = new Room(roomName, roomItems, roomUsefulItems, actorNames,doors);
             allRooms.put(gameName + " : " + roomName, currentRoom);
         });
         return allRooms;
