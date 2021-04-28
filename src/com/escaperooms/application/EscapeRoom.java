@@ -2,9 +2,13 @@ package com.escaperooms.application;
 
 import com.escaperooms.crazystans.CrazyStans;
 import com.escaperooms.joninexams.JoninExams;
+import com.escaperooms.spaceodyssey.Narrator;
 import com.escaperooms.spaceodyssey.SpaceOdyssey;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,19 +31,25 @@ public class EscapeRoom implements EscapeRoomInterface {
     public Map<String, Room> load() throws IOException {
 
         Map<String, Room> allRooms = new HashMap<>();
-        Path path = Paths.get("data/RoomData.csv");
-        Files.readAllLines(path.toAbsolutePath(), StandardCharsets.UTF_8).forEach(roomData -> {
-            String[] roomDataCells = roomData.split(" : ");
-            String gameName = roomDataCells[0];
-            String roomName = roomDataCells[1];
-            List<String> roomItems = Arrays.stream(roomDataCells[2].split(" ~ ")).collect(Collectors.toList());
-            List<String> roomUsefulItems = Arrays.stream(roomDataCells[3].split(" ~ ")).collect(Collectors.toList());
-            List<String> actorNames = Arrays.stream(roomDataCells[4].split(" ~ ")).collect(Collectors.toList());
-            List <String> doors = Arrays.stream(roomDataCells[5].split(" ~ ")).collect(Collectors.toList());
+        try {
+            URL url = EscapeRoom.class.getResource("/resources/data/RoomData.csv");
+            URI uri = url.toURI();
+            Path path = Paths.get(uri);
+            Files.readAllLines(path, StandardCharsets.UTF_8).forEach(roomData -> {
+                String[] roomDataCells = roomData.split(" : ");
+                String gameName = roomDataCells[0];
+                String roomName = roomDataCells[1];
+                List<String> roomItems = Arrays.stream(roomDataCells[2].split(" ~ ")).collect(Collectors.toList());
+                List<String> roomUsefulItems = Arrays.stream(roomDataCells[3].split(" ~ ")).collect(Collectors.toList());
+                List<String> actorNames = Arrays.stream(roomDataCells[4].split(" ~ ")).collect(Collectors.toList());
+                List <String> doors = Arrays.stream(roomDataCells[5].split(" ~ ")).collect(Collectors.toList());
 
-            Room currentRoom = new Room(roomName, roomItems, roomUsefulItems, actorNames,doors);
-            allRooms.put(gameName + " : " + roomName, currentRoom);
-        });
+                Room currentRoom = new Room(roomName, roomItems, roomUsefulItems, actorNames,doors);
+                allRooms.put(gameName + " : " + roomName, currentRoom);
+            });
+        } catch(URISyntaxException e) {
+            System.out.println(e);
+        }
         return allRooms;
 
 

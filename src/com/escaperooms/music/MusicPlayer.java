@@ -1,6 +1,5 @@
 package com.escaperooms.music;
 
-import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import javax.sound.sampled.*;
@@ -15,7 +14,7 @@ public class MusicPlayer extends Thread{
     }
     public void run() {
         try {
-            InputStream url = getClass().getResourceAsStream(song);
+            URL url = MusicPlayer.class.getResource("/resources/" + song);
             AudioInputStream audioStream;
             audioStream = AudioSystem.getAudioInputStream(url);
             clip = AudioSystem.getClip();

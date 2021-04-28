@@ -1,6 +1,11 @@
 package com.escaperooms.spaceodyssey;
 
+import com.escaperooms.music.MusicPlayer;
+
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,16 +22,22 @@ public class Narrator {
        setSpaceDetails(new HashMap<>());
        setCrazyDetails(new HashMap<>());
        setNinjaDetails(new HashMap<>());
-       Path path = Paths.get("data/Descriptions.csv");
-       Files.readAllLines(path.toAbsolutePath(), StandardCharsets.UTF_8).forEach(roomData -> {
-           String[] descriptionCells = roomData.split(" : ");
-           switch (descriptionCells[0]){
-               case "Space Odyssey" : spaceDetails.put(descriptionCells[1],descriptionCells[2]); break;
-               case "Jonin Exam" : ninjaDetails.put(descriptionCells[1],descriptionCells[2]); break;
-               case "Crazy Stan" : crazyDetails.put(descriptionCells[1],descriptionCells[2]); break;
-               case "Kitchen Clean-up" : chefDetails.put(descriptionCells[1],descriptionCells[2]); break;
-           }
-       });
+       try {
+           URL url = Narrator.class.getResource("/resources/data/Descriptions.csv");
+           URI uri = url.toURI();
+           Path path = Paths.get(uri);
+           Files.readAllLines(path, StandardCharsets.UTF_8).forEach(roomData -> {
+               String[] descriptionCells = roomData.split(" : ");
+               switch (descriptionCells[0]){
+                   case "Space Odyssey" : spaceDetails.put(descriptionCells[1],descriptionCells[2]); break;
+                   case "Jonin Exam" : ninjaDetails.put(descriptionCells[1],descriptionCells[2]); break;
+                   case "Crazy Stan" : crazyDetails.put(descriptionCells[1],descriptionCells[2]); break;
+                   case "Kitchen Clean-up" : chefDetails.put(descriptionCells[1],descriptionCells[2]); break;
+               }
+           });
+       } catch(URISyntaxException e) {
+           System.out.println(e);
+       }
    }
 
     public void setSpaceDetails(Map<String, String> spaceDetails) {
