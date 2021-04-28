@@ -16,7 +16,6 @@ class Lobby {
         EscapeRoom.prompt("The answer is in the song. When something's unexpected, it is said to be what? Listen carefully. ",
                 challengeAnswer(), "That is not the correct answer.");
         musicPlayer.stopMusic();
-        System.out.println(itemUnlocked());
         return "songKey";
     }
 
@@ -32,7 +31,4 @@ class Lobby {
         return "coming out of left field";
     }
 
-    String itemUnlocked() {
-        return "songKey acquired";
-    }
 }

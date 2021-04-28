@@ -1,6 +1,7 @@
 package com.escaperooms.application;
 
-import com.apps.util.Prompter;
+
+import com.escaperooms.spaceodyssey.Prompter;
 
 import java.util.Scanner;
 
