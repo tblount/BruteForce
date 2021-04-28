@@ -100,9 +100,10 @@ public class SpaceOdyssey extends EscapeRoom {
                         if(user.isCurrentRoom("KITCHEN") && user.hasAnswer("ROCK") && user.hasAnswer("MATCH") && !user.hasAnswer("APRON") ){
                             tryNarrate(choice[choice.length-1],2);
                             System.out.println("But you're not a chef, so GET OUT OF MY KITCHEN!");
+                            prompter.prompt("Press Enter to Continue")
                             new MusicPlayer("soup.wav").start();
-                            user.getFinishTime();
                             running = false;
+                            traveler.menu();
                             break;
                         }else if(user.isCurrentRoom("KITCHEN") && user.hasAnswer("ROCK") && user.hasAnswer("MATCH") && user.hasAnswer("APRON") ){
                             tryNarrate(choice[choice.length-1],2);
@@ -110,8 +111,7 @@ public class SpaceOdyssey extends EscapeRoom {
                             System.out.println("Before you have to thank them, you are sucked into a time loop");
                             prompter.prompt("Press Enter to Continue\n");
                             running = false;
-                            EscapeRoom stan = traveler.getRooms().get(1).getEscapeRoom();
-                            stan.run(traveler,escapeRoom);
+                            traveler.menu();
                         }
                         else{
                             tryNarrate(choice[choice.length-1],1);
