@@ -2,18 +2,13 @@ package com.escaperooms.application;
 
 import com.escaperooms.crazystans.CrazyStans;
 import com.escaperooms.joninexams.JoninExams;
-import com.escaperooms.spaceodyssey.Narrator;
 import com.escaperooms.spaceodyssey.SpaceOdyssey;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,10 +27,9 @@ public class EscapeRoom implements EscapeRoomInterface {
 
         Map<String, Room> allRooms = new HashMap<>();
         try {
-            URL url = EscapeRoom.class.getResource("/resources/data/RoomData.csv");
-            URI uri = url.toURI();
-            Path path = Paths.get(uri);
-            Files.readAllLines(path, StandardCharsets.UTF_8).forEach(roomData -> {
+            InputStream in = getClass().getResourceAsStream("/resources/data/RoomData.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            reader.lines().forEach(roomData -> {
                 String[] roomDataCells = roomData.split(" : ");
                 String gameName = roomDataCells[0];
                 String roomName = roomDataCells[1];
@@ -47,7 +41,7 @@ public class EscapeRoom implements EscapeRoomInterface {
                 Room currentRoom = new Room(roomName, roomItems, roomUsefulItems, actorNames,doors);
                 allRooms.put(gameName + " : " + roomName, currentRoom);
             });
-        } catch(URISyntaxException e) {
+        } catch(Exception e) {
             System.out.println(e);
         }
         return allRooms;
