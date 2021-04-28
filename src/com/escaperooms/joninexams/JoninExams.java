@@ -41,7 +41,6 @@ public class JoninExams extends EscapeRoom {
     }
 
     void welcome() {
-
         Prompter input = new Prompter(new Scanner(System.in));
 
         ArrayList<String> villages = new ArrayList<String>();
