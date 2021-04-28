@@ -44,7 +44,8 @@ public class EscapeRoom implements EscapeRoomInterface {
 
     }
 
-    public void generateEscapeRooms() throws IOException {
+    public void generateEscapeRooms(EscapeRoom room) throws IOException {
+        me = room;
         SpaceOdyssey spaceOdyssey = new SpaceOdyssey();
         CrazyStans crazyStans = new CrazyStans();
         JoninExams joninExams = new JoninExams();
@@ -79,6 +80,8 @@ public class EscapeRoom implements EscapeRoomInterface {
     }
 
     private void quitGame() {
+        System.out.println("Quitting game...");
+        System.exit(0);
     }
 
     @Override
