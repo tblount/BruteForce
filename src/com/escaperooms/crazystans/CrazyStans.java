@@ -28,19 +28,19 @@ public class CrazyStans extends EscapeRoom {
         this.traveler = traveler;
         this.user = traveler.getUser();
         user.newName("Nick");
-        welcomeMessage();
-        beginChallenges();
-        traveler.menu();
+        opening();
+        challenges();
+        closing();
     }
 
-    private void welcomeMessage() {
+    private void opening() {
         musicPlayer.start();
-        System.out.println("Welcome to Crazy Stans.");
+        System.out.println(welcomeMessage());
         EscapeRoom.prompt("Type 'start' to begin the challenges ", "start", "Invalid command");
         musicPlayer.stopMusic();
     }
 
-    private void beginChallenges() {
+    private void challenges() {
         lobbyChallenge();
         beyonceChallenge();
         arianaChallenge();
@@ -48,8 +48,8 @@ public class CrazyStans extends EscapeRoom {
         christinaAguileraChallenge();
     }
 
-    private boolean canJumpRoom() {
-        return traveler.getRooms().size() > 0;
+    private void closing() {
+        traveler.menu();
     }
 
     private void beyonceChallenge() {
@@ -76,6 +76,10 @@ public class CrazyStans extends EscapeRoom {
         return this.name;
     }
 
+    private String welcomeMessage() {
+        return "Welcome to " + name + ".";
+    }
+
 
     @Override
     public void terminate() {
@@ -84,6 +88,6 @@ public class CrazyStans extends EscapeRoom {
 
     @Override
     public Playable playable() throws IOException {
-        return new Playable(this.getName(), "Welcome to Crazy Stans", new CrazyStans());
+        return new Playable(this.getName(), welcomeMessage(), new CrazyStans());
     }
 }

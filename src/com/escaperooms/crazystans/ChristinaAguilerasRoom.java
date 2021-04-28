@@ -25,7 +25,7 @@ class ChristinaAguilerasRoom {
 
     private void challengeTwoIWillBe() {
         MusicPlayer musicPlayer = startSong("iwillbe.wav");
-        EscapeRoom.prompt("Unreleased as apart of the Stripped album, the greatest album of all time, what is the name is this song? ",
+        EscapeRoom.prompt("Unreleased as apart of the Stripped album, the greatest album of all time, what is the name of this song? ",
                 answers.get("challengeTwoIWillBe"), "That is not the correct answer.");
         musicPlayer.stopMusic();
     }
