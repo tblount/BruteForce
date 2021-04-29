@@ -64,9 +64,9 @@ public class EscapeRoom implements EscapeRoomInterface {
     }
 
 
-    public EscapeRoom getEscapeRoom(String room) {
+    public Playable getEscapeRoomPlayable(String room) {
         Map<String, Playable> playables = getEscapeRooms();
-        return playables.get(room).getEscapeRoom();
+        return playables.get(room);
     }
 
     public void removeEscapeRoom(String room) {

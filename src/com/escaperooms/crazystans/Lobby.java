@@ -5,12 +5,13 @@ import com.escaperooms.application.EscapeRoom;
 import com.escaperooms.music.MusicPlayer;
 
 class Lobby {
-    MusicPlayer musicPlayer = new MusicPlayer("feelitstill.wav");
+    MusicPlayer musicPlayer;
 
     public Lobby() {
     }
 
     String start() {
+        musicPlayer = new MusicPlayer("feelitstill.wav");
         System.out.println(welcomeMessage());
         playSong();
         EscapeRoom.prompt("The answer is in the song. When something's unexpected, it is said to be what? Listen carefully. ",

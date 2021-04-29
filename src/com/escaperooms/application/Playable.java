@@ -2,9 +2,10 @@ package com.escaperooms.application;
 
 public class Playable {
 
-    String name;
-    String message;
-    EscapeRoom escapeRoom;
+    private String name;
+    private String message;
+    private EscapeRoom escapeRoom;
+    private boolean isCompleted = false;
 
     public Playable(String name, String message, EscapeRoom escapeRoom) {
         setEscapeRoom(escapeRoom);
@@ -34,5 +35,13 @@ public class Playable {
 
     public void setEscapeRoom(EscapeRoom escapeRoom) {
         this.escapeRoom = escapeRoom;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public void setCompleted() {
+        this.isCompleted = true;
     }
 }
