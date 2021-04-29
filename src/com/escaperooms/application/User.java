@@ -14,6 +14,7 @@ public class User {
     List<String> inventory = new ArrayList<>();
     List<String> answers = new ArrayList<>();
     boolean winOrLose;
+    private double travelersID;
 
 
     public double getEndTime() {
@@ -104,5 +105,13 @@ public class User {
 
     public String getCurrentRoom() {
         return currentRoom;
+    }
+
+    double getTravelersID() {
+        return travelersID;
+    }
+
+    void setTravelersID(double travelersID) {
+        this.travelersID = travelersID;
     }
 }

@@ -32,6 +32,12 @@ public class Traveler {
         return getRooms().size() <= 0;
     }
 
+    private void wonSequence() {
+        user.setTravelersID(Math.random() * 1000);
+        System.out.println(ansi().fg(GREEN).a("All rooms completed! You won! You have been granted a Traveler's ID." +
+                "Your Traveler's ID is " + ansi().fg(RED).a(user.getTravelersID())).reset() + ". DO NOT LOSE IT!");
+    }
+
     public void menu() {
         List<Playable> availableRooms = getRooms();
         if(!isEscapeRoomCompleted()) {
@@ -48,7 +54,7 @@ public class Traveler {
             EscapeRoom room = availableRooms.get(choice).getEscapeRoom();
             jump(room);
         } else {
-            System.out.println("All rooms completed! You won!");
+            wonSequence();
             System.exit(0);
         }
 
