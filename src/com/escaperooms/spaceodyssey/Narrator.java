@@ -1,10 +1,9 @@
 package com.escaperooms.spaceodyssey;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,16 +16,21 @@ public class Narrator {
        setSpaceDetails(new HashMap<>());
        setCrazyDetails(new HashMap<>());
        setNinjaDetails(new HashMap<>());
-       Path path = Paths.get("data/Descriptions.csv");
-       Files.readAllLines(path.toAbsolutePath(), StandardCharsets.UTF_8).forEach(roomData -> {
-           String[] descriptionCells = roomData.split(" : ");
-           switch (descriptionCells[0]){
-               case "Space Odyssey" : spaceDetails.put(descriptionCells[1],descriptionCells[2]); break;
-               case "Jonin Exam" : ninjaDetails.put(descriptionCells[1],descriptionCells[2]); break;
-               case "Crazy Stan" : crazyDetails.put(descriptionCells[1],descriptionCells[2]); break;
-               case "Kitchen Clean-up" : chefDetails.put(descriptionCells[1],descriptionCells[2]); break;
-           }
-       });
+       try {
+           InputStream in = getClass().getResourceAsStream("/resources/data/Descriptions.csv");
+           BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+           reader.lines().forEach(roomData -> {
+               String[] descriptionCells = roomData.split(" : ");
+               switch (descriptionCells[0]){
+                   case "Space Odyssey" : spaceDetails.put(descriptionCells[1],descriptionCells[2]); break;
+                   case "Jonin Exam" : ninjaDetails.put(descriptionCells[1],descriptionCells[2]); break;
+                   case "Crazy Stan" : crazyDetails.put(descriptionCells[1],descriptionCells[2]); break;
+                   case "Kitchen Clean-up" : chefDetails.put(descriptionCells[1],descriptionCells[2]); break;
+               }
+           });
+       } catch(Exception e) {
+           System.out.println(e);
+       }
    }
 
     public void setSpaceDetails(Map<String, String> spaceDetails) {
