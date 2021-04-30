@@ -24,13 +24,15 @@ public class JoninExams extends EscapeRoom {
         this.user = traveler.getUser();
         escapeRoom.getEscapeRooms().remove("Jonin Exams");
         welcome();
+        battle();
     }
+
+    Prompter input = new Prompter(new Scanner(System.in));
+
     void welcome() {
 
         Ninja fighter1 = new Ninja("Kakashi", 10);
         Ninja fighter2 = new Ninja("Gaara", 10);
-
-        Prompter input = new Prompter(new Scanner(System.in));
 
         ArrayList<String> villages = new ArrayList<String>();
         villages.add("1: Hidden Leaf Village");
@@ -67,16 +69,42 @@ public class JoninExams extends EscapeRoom {
 
         switch (ready) {
             case "yes":
-                System.out.println("Ok Fight!!!");
+                System.out.println("Ok step into the arena!");
+                break;
             case "no":
                 System.out.println(" Welp you better get ready! Fighhhtttt.");
+                break;
             default:
                 System.out.println("Please choose yes or no.");
         }
 
-        user.addItem("leaf headband");
         System.out.println(" ");
         System.out.println("Have fun on journey!!");
+    }
+
+    void battle() {
+        System.out.println("Ok now that both opponents are ready lets go!!!!!!");
+        System.out.println("OK on my count 1.....2....3!!!!!");
+        System.out.println("=====================================================================================");
+        System.out.println("Your opponent is preparing to use his Ginjutsu");
+        String attack = input.prompt("How would you like to attack?");
+
+        switch (attack) {
+            case "1":
+                System.out.println("You used your ginjutsu and was able to defeat the opponent!!");
+                System.out.println("Wow that was fast!! ....and the winner is " + user .getName());
+                user.addItem("leaf headband");
+                break;
+            case "2":
+                System.out.println("Your opponent has defeated you before you could blink!!!");
+                System.out.println("Better luck next time!!!");
+                break;
+            case "3":
+                System.out.println("You dodged the attack but it was a distraction and your opponent defeated you with a" +
+                        " with a blazing kick to the back of your head!");
+                System.out.println("Call the medics this match is over!!");
+        }
+        jump();
     }
 
     @Override
@@ -98,3 +126,5 @@ public class JoninExams extends EscapeRoom {
         return "Jonin Exams";
     }
 }
+
+
