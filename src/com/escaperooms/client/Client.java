@@ -14,7 +14,7 @@ class Client {
         User user = new User();
         EscapeRoom escapeRoom = new EscapeRoom();
         escapeRoom.generateEscapeRooms(escapeRoom);
-        String name = EscapeRoom.prompt("Please enter your name: ", "[a-zA-z]*",
+        String name = EscapeRoom.prompt("Please enter your name: ", "[ a-zA-z]*",
                 "\nThat is not a valid name!\n");
         user.newName(name);
         Traveler traveler = new Traveler(user, escapeRoom);
