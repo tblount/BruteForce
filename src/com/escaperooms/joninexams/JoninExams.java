@@ -37,7 +37,7 @@ public class JoninExams extends EscapeRoom {
         villages.add("2: The Village Hidden in the Stones");
 
         System.out.println("=====================================================================================");
-        System.out.println("Hello " + user.getName() + "\n Wow I use to know a legendary Ninja by that name!!");
+        System.out.println("Hello " + user.getName() + "...Wow I use to know a legendary Ninja by that name!!");
         System.out.println("=====================================================================================");
         System.out.println("Welcome to the Jonin Exams, there will be some tough opponents today!");
         System.out.println("=====================================================================================");
@@ -61,6 +61,18 @@ public class JoninExams extends EscapeRoom {
                 System.out.println("That village is not allowed to participate in the exams.");
         }
         System.out.println("=====================================================================================");
+
+        System.out.println("Ok lets get started!!");
+        String ready = input.prompt(user.getName() + " Are you ready to battle?");
+
+        switch (ready) {
+            case "yes":
+                System.out.println("Ok Fight!!!");
+            case "no":
+                System.out.println(" Welp you better get ready! Fighhhtttt.");
+            default:
+                System.out.println("Please choose yes or no.");
+        }
 
         user.addItem("leaf headband");
         System.out.println(" ");
