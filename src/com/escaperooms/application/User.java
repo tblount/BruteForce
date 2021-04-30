@@ -23,10 +23,11 @@ public class User {
     }
     public void getFinishTime() {
         long secs = ((System.currentTimeMillis() - startTime)/1000)%60;
-        int mins = (int) Math.floor(secs/60);
+        int mins = (int) Math.floor(((System.currentTimeMillis() - startTime)/1000)/60);
         System.out.println(
                 "Time : "+mins+" minutes and "+secs+" seconds"
         );
+        System.out.println("Points : "+getPoints());
     }
 
     public int getPoints() {
@@ -56,6 +57,7 @@ public class User {
     public void addItem(String item) {
         System.out.println(name+ " Obtained "+item);
         this.inventory.add(item);
+        addPoints(100);
     }
 
     public void removeItem(String item) {
@@ -76,6 +78,7 @@ public class User {
 
     public void move(String roomName){
         this.currentRoom = roomName;
+        addPoints(25);
     }
 
     public boolean isCurrentRoom(String roomName){
@@ -88,6 +91,7 @@ public class User {
 
     public void addAnswer(String answer){
         this.answers.add(answer);
+        addPoints(100);
     }
 
     public boolean hasAnswer(String answer){

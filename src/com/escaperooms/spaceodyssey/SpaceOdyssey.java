@@ -52,6 +52,7 @@ public class SpaceOdyssey extends EscapeRoom {
                 case "INVENTORY" : traveler.getUser().showInventory(); prompter.prompt("Press Enter to Continue"); break;
                         case "TAKE":
                         case "GRAB":
+                        case "STEAL":
                         case "GET": if(userCurrentRoom.hasItem(choice[1])){
                     user.addItem(choice[1]);
                     userCurrentRoom.removeItem(choice[1]);
@@ -197,10 +198,5 @@ public class SpaceOdyssey extends EscapeRoom {
     public String getName() {
         return "Space Odyssey";
     }
-
-
-
-
-
 
 }
