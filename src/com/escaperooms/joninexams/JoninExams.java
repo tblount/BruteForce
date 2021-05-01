@@ -33,65 +33,67 @@ public class JoninExams extends EscapeRoom {
 
         Ninja fighter1 = new Ninja("Kakashi", 10);
         Ninja fighter2 = new Ninja("Gaara", 10);
+        Ninja fighter3 = new Ninja("Killer B", 10);
 
         ArrayList<String> villages = new ArrayList<String>();
-        villages.add("1: Hidden Leaf Village");
+        villages.add("1: The Hidden Leaf Village");
         villages.add("2: The Village Hidden in the Stones");
+        villages.add("3. The Village Hidden in the Clouds");
 
         System.out.println("=====================================================================================");
         System.out.println("Hello " + user.getName() + "...Wow I use to know a legendary Ninja by that name!!");
-        System.out.println("=====================================================================================");
-        System.out.println("Welcome to the Jonin Exams, there will be some tough opponents today!");
-        System.out.println("=====================================================================================");
-        System.out.println("Ok here is a list of villages that can compete in the Jonin Exams today");
-        System.out.println("=====================================================================================");
+        System.out.println("\nWelcome to the Jonin Exams, there will be some tough opponents today!");
+        System.out.println("\nOk here is a list of villages that can compete in the Jonin Exams today");
+
+        System.out.println("=====================================");
         System.out.println(villages.get(0));
         System.out.println(villages.get(1));
+        System.out.println(villages.get(2));
+        System.out.println("=====================================");
+        String home = input.prompt("What village are you from? 1-3");
 
-        System.out.println("=====================================================================================");
-        String home = input.prompt("What village are you from?");
-        System.out.println("=====================================================================================");
+            switch (home) {
+                case "1":
+                    System.out.println("Looks like you will be facing the Legendary..." + fighter1.getNinjaName());
+                    break;
+                case "2":
+                    System.out.println("Ok..." + user.getName() + " You will be fighting " + fighter2.getNinjaName());
+                    break;
+                case "3":
+                    System.out.println("You will be matched against " + fighter3.getNinjaName());
+                    break;
+                default:
+                    System.out.println("That village is not allowed to participate in the exams.");
+            }
 
-        switch (home) {
-            case "1":
-                System.out.println("Looks like you wil facing the Legendary..." + fighter1.getNinjaName());
-                break;
-            case "2":
-                System.out.println("Ok..." + user.getName() + " You will be fighting " + fighter2.getNinjaName());
-                break;
-            default:
-                System.out.println("That village is not allowed to participate in the exams.");
-        }
-        System.out.println("=====================================================================================");
+        System.out.println("=================================================================");
 
         System.out.println("Ok lets get started!!");
-        String ready = input.prompt(user.getName() + " Are you ready to battle?");
+        String ready = input.prompt(user.getName() + " Are you ready to battle? yes or no");
 
         switch (ready) {
             case "yes":
-                System.out.println("Ok step into the arena!");
+                System.out.println("\nOk step into the arena!");
                 break;
             case "no":
-                System.out.println(" Welp you better get ready! Fighhhtttt.");
+                System.out.println("\nWelp you better get ready! Get in there!");
                 break;
             default:
-                System.out.println("Please choose yes or no.");
+                System.out.println("\nPlease choose yes or no.");
         }
-
-        System.out.println(" ");
-        System.out.println("Have fun on journey!!");
     }
 
     void battle() {
         System.out.println("Ok now that both opponents are ready lets go!!!!!!");
-        System.out.println("OK on my count 1.....2....3!!!!!");
-        System.out.println("=====================================================================================");
-        System.out.println("Your opponent is preparing to use his Ginjutsu");
-        String attack = input.prompt("How would you like to attack?");
+        System.out.println("\nOn my count 1.....2....3!!!!!");
+        System.out.println("\nYour opponent is preparing to use his Genjutsu");
+        System.out.println(" ");
+        String attack = input.prompt("How would you like to attack? \n" +
+                " 1: Counter Genjutsu \n 2: Ninjutsu \n 3: Dodge ");
 
         switch (attack) {
             case "1":
-                System.out.println("You used your ginjutsu and was able to defeat the opponent!!");
+                System.out.println("You used your genjutsu and was able to defeat the opponent!!");
                 System.out.println("Wow that was fast!! ....and the winner is " + user .getName());
                 user.addItem("leaf headband");
                 break;
@@ -103,13 +105,13 @@ public class JoninExams extends EscapeRoom {
                 System.out.println("You dodged the attack but it was a distraction and your opponent defeated you with a" +
                         " with a blazing kick to the back of your head!");
                 System.out.println("Call the medics this match is over!!");
+                break;
         }
         jump();
     }
 
     @Override
     public void terminate() {
-
     }
 
     @Override
