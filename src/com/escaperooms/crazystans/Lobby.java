@@ -1,7 +1,6 @@
 package com.escaperooms.crazystans;
 
 
-import com.escaperooms.application.EscapeRoom;
 import com.escaperooms.music.MusicPlayer;
 
 import static org.fusesource.jansi.Ansi.*;
@@ -29,10 +28,13 @@ class Lobby {
     }
 
     private void askQuestion() {
-        String hint = EscapeRoom.prompt("The answer is in the song. When something's unexpected, it is said to be what? Listen carefully. ",
-                challengeAnswer() + "|hint", "That is not the correct answer.");
+        String hint = CrazyStansPrompter.prompt("The answer is in the song. When something's unexpected, it is said to be what? Listen carefully. " +
+                        "Type 'commands' to see what you can do. ",
+                challengeAnswer() + "|hint", musicPlayer);
         if (hint.equals("hint")) {
             hintChecker();
+        } else if(hint.equals("rerun")) {
+            askQuestion();
         }
     }
 

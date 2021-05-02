@@ -1,6 +1,5 @@
 package com.escaperooms.music;
 
-import java.io.InputStream;
 import java.net.URL;
 import javax.sound.sampled.*;
 
@@ -40,4 +39,9 @@ public class MusicPlayer extends Thread{
             e.printStackTrace();
         }
     }
+
+    public Clip getClip() {
+        return this.clip;
+    }
+
 }

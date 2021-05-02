@@ -14,13 +14,13 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class CrazyStans extends EscapeRoom {
     private final String name = "Crazy Stans";
     private Traveler traveler;
-    User user;
-    Lobby lobby = new Lobby();
-    BeyoncesRoom beyoncesRoom = new BeyoncesRoom();
-    ArianasRoom arianasRoom = new ArianasRoom();
-    MichaelJacksonsRoom michaelJacksonsRoom = new MichaelJacksonsRoom();
-    ChristinaAguilerasRoom christinaAguilerasRoom = new ChristinaAguilerasRoom();
-    MusicPlayer musicPlayer;
+    private User user;
+    private final Lobby lobby = new Lobby();
+    private final BeyoncesRoom beyoncesRoom = new BeyoncesRoom();
+    private final ArianasRoom arianasRoom = new ArianasRoom();
+    private final MichaelJacksonsRoom michaelJacksonsRoom = new MichaelJacksonsRoom();
+    private final ChristinaAguilerasRoom christinaAguilerasRoom = new ChristinaAguilerasRoom();
+    private MusicPlayer musicPlayer;
 
     public CrazyStans() throws IOException {
     }
@@ -41,6 +41,10 @@ public class CrazyStans extends EscapeRoom {
         System.out.println(welcomeMessage());
         EscapeRoom.prompt("Type 'start' to begin the challenges ", "start", "Invalid command");
         musicPlayer.stopMusic();
+    }
+
+    static String commandsList() {
+        return "p = Play, s = Stop, r = Reset, quit = Quit";
     }
 
     private void challenges() {
