@@ -10,7 +10,7 @@ import java.io.IOException;
 class Client {
 
     public static void main(String[] args) throws IOException {
-//        AnsiConsole.systemInstall();
+        AnsiConsole.systemInstall();
         User user = new User();
         EscapeRoom escapeRoom = new EscapeRoom();
         escapeRoom.generateEscapeRooms(escapeRoom);
