@@ -29,7 +29,15 @@ public class Traveler {
     }
 
     private boolean isEscapeRoomCompleted() {
-        return getRooms().size() <= 0;
+        List<Playable> availableRooms = getRooms();
+        boolean result = true;
+        for(Playable room : availableRooms) {
+            if (!room.isCompleted()) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     private void wonSequence() {

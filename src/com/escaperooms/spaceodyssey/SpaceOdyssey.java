@@ -29,11 +29,7 @@ public class SpaceOdyssey extends EscapeRoom {
     public void run(Traveler traveler, EscapeRoom escapeRoom) {
         this.traveler = traveler;
         User user = traveler.getUser();
-        user.newName("Rennie");
         this.running = true;
-        user.addItem("Aguilera's Microphone");
-        user.addItem("ExampleItem");
-
         Prompter prompter = new Prompter(new Scanner(System.in));
 
         user.move("KITCHEN");
