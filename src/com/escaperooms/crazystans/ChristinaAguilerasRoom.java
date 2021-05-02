@@ -23,7 +23,7 @@ class ChristinaAguilerasRoom {
     }
 
     private String commandsMessage() {
-        return "Type 'commands' to see what you can do' ";
+        return "Type 'commands' to see what you can do: ";
     }
 
     private String completeMessage() {
