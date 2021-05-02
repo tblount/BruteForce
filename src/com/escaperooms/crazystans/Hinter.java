@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 class Hinter {
-    List<String> hints = new ArrayList<>();
+    private final List<String> hints = new ArrayList<>();
 
     Hinter(String... args) {
         hints.addAll(Arrays.asList(args));

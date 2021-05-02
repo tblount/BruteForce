@@ -1,15 +1,11 @@
 package com.escaperooms.crazystans;
 
 import com.escaperooms.application.EscapeRoom;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.fusesource.jansi.Ansi.Color.RED;
 import static org.fusesource.jansi.Ansi.ansi;
 
 class ArianasRoom {
-    Hinter hinter;
+    private Hinter hinter;
 
     String start() {
         generateHints();
@@ -40,11 +36,11 @@ class ArianasRoom {
         askQuestion();
     }
 
-    String welcomeMessage() {
+    private String welcomeMessage() {
         return "Welcome to the Crazy Stans' Ariana Grande room.";
     }
 
-    String challengeAnswer() {
+    private String challengeAnswer() {
         return "cream filled";
     }
 }

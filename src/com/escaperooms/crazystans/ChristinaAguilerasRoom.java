@@ -9,7 +9,7 @@ import java.util.Map;
 
 class ChristinaAguilerasRoom {
 
-    Map<String, String> answers = Map.of("challengeOneSoar", "soar", "challengeTwoIWillBe", "i will be");
+    private final Map<String, String> answers = Map.of("challengeOneSoar", "soar", "challengeTwoIWillBe", "i will be");
 
     String start() {
         System.out.println(welcomeMessage());
@@ -19,7 +19,11 @@ class ChristinaAguilerasRoom {
     }
 
     private void startPrompt() {
-        EscapeRoom.prompt("Type 'start' to begin the challenge. Type 'commands' to see what you can do. ", "start", "Invalid command");
+        EscapeRoom.prompt("Type 'start' to begin the challenge. ", "start", "Invalid command");
+    }
+
+    private String commandsMessage() {
+        return "Type 'commands' to see what you can do' ";
     }
 
     private String completeMessage() {
@@ -34,7 +38,7 @@ class ChristinaAguilerasRoom {
     }
 
     private void challengeOneSoar(MusicPlayer musicPlayer) {
-        String input = CrazyStansPrompter.prompt("What word is the highest note hit in this sequence? ",
+        String input = CrazyStansPrompter.prompt("What word is the highest note hit in this sequence? " + commandsMessage(),
                 answers.get("challengeOneSoar"), musicPlayer);
         if(input.equals("rerun")) {
             challengeOneSoar(musicPlayer);
@@ -52,10 +56,10 @@ class ChristinaAguilerasRoom {
 
     private void challengeTwoIWillBe(MusicPlayer musicPlayer) {
         String input = CrazyStansPrompter.prompt("Unreleased as apart of the Stripped album, the greatest album of all time, " +
-                        "what is the name of this song? ",
+                        "what is the name of this song? " + commandsMessage(),
                 answers.get("challengeTwoIWillBe"), musicPlayer);
         if(input.equals("rerun")) {
-            challengeOneSoar(musicPlayer);
+            challengeTwoIWillBe(musicPlayer);
         } else {
             musicPlayer.stopMusic();
         }

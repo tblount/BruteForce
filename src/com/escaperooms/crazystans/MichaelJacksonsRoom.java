@@ -6,7 +6,7 @@ import static org.fusesource.jansi.Ansi.Color.RED;
 import static org.fusesource.jansi.Ansi.ansi;
 
 class MichaelJacksonsRoom {
-    Hinter hinter;
+    private Hinter hinter;
 
     String start() {
         generateHints();
@@ -36,11 +36,11 @@ class MichaelJacksonsRoom {
         askQuestion();
     }
 
-    String welcomeMessage() {
+    private String welcomeMessage() {
         return "Welcome to the Crazy Stans' Michael Jackson room.";
     }
 
-    String challengeAnswer() {
+    private String challengeAnswer() {
         return "beauty queen";
     }
 }

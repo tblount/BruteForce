@@ -1,12 +1,11 @@
 package com.escaperooms.crazystans;
 
 import com.escaperooms.application.EscapeRoom;
-
 import static org.fusesource.jansi.Ansi.Color.RED;
 import static org.fusesource.jansi.Ansi.ansi;
 
 class BeyoncesRoom {
-    Hinter hinter;
+    private Hinter hinter;
 
     String start() {
         generateHints();
@@ -36,11 +35,11 @@ class BeyoncesRoom {
         askQuestion();
     }
 
-    String welcomeMessage() {
+    private String welcomeMessage() {
         return "Welcome to the Crazy Stans Beyonce room.";
     }
 
-    String challengeAnswer() {
+    private String challengeAnswer() {
         return "dangerously in love";
     }
 

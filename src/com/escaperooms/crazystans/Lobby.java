@@ -7,8 +7,8 @@ import static org.fusesource.jansi.Ansi.*;
 import static org.fusesource.jansi.Ansi.Color.*;
 
 class Lobby {
-    MusicPlayer musicPlayer;
-    Hinter hinter;
+    private MusicPlayer musicPlayer;
+    private Hinter hinter;
 
     public Lobby() {
     }
@@ -52,15 +52,15 @@ class Lobby {
         askQuestion();
     }
 
-    String welcomeMessage() {
+    private String welcomeMessage() {
         return "Welcome to Crazy Stans Lobby";
     }
 
-    void playSong() {
+    private void playSong() {
         musicPlayer.start();
     }
 
-    String challengeAnswer() {
+    private String challengeAnswer() {
         return "out of left field";
     }
 }

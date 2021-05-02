@@ -6,7 +6,7 @@ import com.escaperooms.music.MusicPlayer;
 import java.util.List;
 
 class CrazyStansPrompter {
-    static List<String> musicControls = List.of("p", "s", "r");
+    private static final List<String> musicControls = List.of("p", "s", "r");
 
     static String prompt(String message, String regex, MusicPlayer musicPlayer) {
         final StringBuffer controls = new StringBuffer();
