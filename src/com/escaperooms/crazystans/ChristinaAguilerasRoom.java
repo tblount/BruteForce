@@ -2,6 +2,8 @@ package com.escaperooms.crazystans;
 
 import com.escaperooms.application.EscapeRoom;
 import com.escaperooms.music.MusicPlayer;
+import static org.fusesource.jansi.Ansi.Color.RED;
+import static org.fusesource.jansi.Ansi.ansi;
 
 import java.util.Map;
 
@@ -33,10 +35,11 @@ class ChristinaAguilerasRoom {
     }
 
     String welcomeMessage() {
-        return "Welcome to Crazy Stans' Christina Aguilera Room. You have been allowed entry into the GOAT's room " +
-                "because you have acquired the items from those that aspire to be the GOAT but are not quite there, \n " +
-                "and a legend from the past. Here you will be faced with three challenges, the most difficult you have \n" +
-                "faced. Solve both challenges, and you will be granted with the mic of the great one.";
+        return "Welcome to Crazy Stans' Christina Aguilera Room.\nYou have been allowed entry into the GOAT's room " +
+                "because you have acquired the items from those that aspire to be the GOAT but can never be " +
+                "and a legend from the past.\nHere you will be faced with three challenges, the most difficult you have " +
+                "faced.\n" + ansi().fg(RED).a("There are no hints in this room.").reset() + "\nSolve both challenges, " +
+                "and you will be granted with the mic of the great one and be allowed to escape.";
     }
 
 
@@ -45,5 +48,4 @@ class ChristinaAguilerasRoom {
         musicPlayer.start();
         return  musicPlayer;
     }
-
 }
