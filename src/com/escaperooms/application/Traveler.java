@@ -42,7 +42,8 @@ public class Traveler {
 
     private void wonSequence() {
         user.setTravelersID(Math.random() * 1000);
-        System.out.println(ansi().fg(GREEN).a("All rooms completed! You won! You have been granted a Traveler's ID." +
+        System.out.println(ansi().fg(GREEN).a("All rooms completed! You won!\n" +
+                "You have been granted a Traveler's ID.\n" +
                 "Your Traveler's ID is " + ansi().fg(RED).a(user.getTravelersID())).reset() + ". DO NOT LOSE IT!");
     }
 
