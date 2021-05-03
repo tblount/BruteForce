@@ -3,6 +3,7 @@ package com.escaperooms.application;
 import com.escaperooms.crazystans.CrazyStans;
 import com.escaperooms.joninexams.JoninExams;
 import com.escaperooms.spaceodyssey.SpaceOdyssey;
+import com.escaperooms.spaceodyssey.Trivia;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,14 +17,15 @@ public class EscapeRoom implements EscapeRoomInterface {
     private static final EscapeRoomPrompter escapeRoomPrompter = new EscapeRoomPrompter();
     Map<String, Playable> escapeRooms = new HashMap<>();
     public Map<String, Room> innerRooms;
+    public Map<String, Trivia> trivia;
     private static EscapeRoom me;
 
     public EscapeRoom() throws IOException {
         this.innerRooms = this.load();
-
+        this.trivia = this.loadTrivia();
     }
 
-    public Map<String, Room> load() throws IOException {
+    public Map<String, Room> load() {
 
         Map<String, Room> allRooms = new HashMap<>();
         try {
@@ -47,6 +49,30 @@ public class EscapeRoom implements EscapeRoomInterface {
         return allRooms;
 
 
+    }
+
+    public Map<String, Trivia> loadTrivia(){
+
+        Map<String, Trivia> allTrivia = new HashMap<>();
+        try {
+            InputStream in = getClass().getResourceAsStream("/resources/data/Trivia.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            reader.lines().forEach(triviaQuestion -> {
+                String[] questionParam = triviaQuestion.split(" : ");
+                String questionName = questionParam[0];
+                String question = questionParam[1];
+                String correctAnswer = questionParam[2];
+                String answerA = questionParam[3];
+                String answerB = questionParam[4];
+                String answerC = questionParam[5];
+                String answerD = questionParam[6];
+                Trivia triva = new Trivia(questionName,question,correctAnswer,answerA,answerB,answerC,answerD);
+                allTrivia.put(questionName,triva);
+            });
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+        return allTrivia;
     }
 
     public void generateEscapeRooms(EscapeRoom room) throws IOException {

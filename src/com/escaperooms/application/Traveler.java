@@ -45,6 +45,7 @@ public class Traveler {
         System.out.println(ansi().fg(GREEN).a("All rooms completed! You won!\n" +
                 "You have been granted a Traveler's ID.\n" +
                 "Your Traveler's ID is " + ansi().fg(RED).a(user.getTravelersID())).reset() + ". DO NOT LOSE IT!");
+        user.getFinishTime();
     }
 
     public void menu() {
@@ -58,7 +59,7 @@ public class Traveler {
                     System.out.println(ansi().fg(RED).a(i + ": " + currentRoom.getName() + "(played)").reset());
                 }
             }
-            String selection = EscapeRoom.prompt("Select a room. ", "[0-" + availableRooms.size() + "]", "Invalid choice.");
+            String selection = EscapeRoom.prompt("Select a room. ", "[0-" + (availableRooms.size()-1) + "]", "Invalid choice.");
             int choice = Integer.parseInt(selection);
             EscapeRoom room = availableRooms.get(choice).getEscapeRoom();
             jump(room);

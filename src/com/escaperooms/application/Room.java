@@ -89,6 +89,10 @@ public class Room {
         this.actors = actors;
     }
 
+    public void removeActors(String actor) {
+        actors.remove(actor);
+    }
+
     public String getName() {
         return name;
     }
@@ -99,6 +103,10 @@ public class Room {
 
     public boolean hasItem(String itemName) {
         return getItems().contains(itemName);
+    }
+
+    public void addItem(String itemName) {
+        items.add(itemName);
     }
 
     public boolean hasUsefulItem(String itemName) {
