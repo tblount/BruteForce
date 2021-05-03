@@ -1,5 +1,4 @@
 QuestionName : What is the question? : A : Answer A : Answer B : Answer C : Answer D
-Lawyer : What is the minimum score to be a lawyer? : B : 800 : 1250 : 900 : 1738
 CAT0 : What is the minimum score to be a cat0? : B : 800 : 1250 : 900 : 1738
 CAT1 : What is the minimum score to be a cat1? : B : 800 : 1250 : 900 : 1738
 CAT2 : What is the minimum score to be a cat2? : B : 800 : 1250 : 900 : 1738
@@ -15,14 +14,18 @@ HORSE1 : What is the minimum score to be a horse1? : B : 800 : 1250 : 900 : 1738
 HORSE2 : What is the minimum score to be a horse2? : B : 800 : 1250 : 900 : 1738
 HORSE3 : What is the minimum score to be a horse3? : B : 800 : 1250 : 900 : 1738
 HORSE4 : What is the minimum score to be a horse4? : B : 800 : 1250 : 900 : 1738
-DUCK0 : What is the minimum score to be a duck0? : B : 800 : 1250 : 900 : 1738
-DUCK1 : What is the minimum score to be a duck1? : B : 800 : 1250 : 900 : 1738
-DUCK2 : What is the minimum score to be a duck2? : B : 800 : 1250 : 900 : 1738
-DUCK3 : What is the minimum score to be a duck3? : B : 800 : 1250 : 900 : 1738
-DUCK4 : What is the minimum score to be a duck4? : B : 800 : 1250 : 900 : 1738
+DUCK0 : An adult male duck is referred to as a _____? : B : Mandark : Drake : Quacker : Duckle
+DUCK1 : Many birds have a gland that produces a waxy oil to waterproof feathers called a _____ gland? : C : Mandark : Drake : uropygial : Duckle
+DUCK2 : How long after hatching are Ducklings able to walk and leave the nest? : B : immediately : a couple hours : a day : a couple days
+DUCK3 : a group of ducks can be called a ______? : D : druid : deckle : cast : raft
+DUCK4 : How many eyelids does a duck have? : C : 1 : 2 : 3 : 4
+DUCKLING0 : An adult male duck is referred to as a _____? : B : Mandark : Drake : Quacker : Duckle
+DUCKLING1 : Many birds have a gland that produces a waxy oil to waterproof feathers called a _____ gland? : C : Mandark : Drake : uropygial : Duckle
+DUCKLING2 : How long after hatching are Ducklings able to walk and leave the nest? : B : immediately : a couple hours : a day : a couple days
+DUCKLING3 : a group of ducks can be called a ______? : D : druid : deckle : cast : raft
+DUCKLING4 : How many eyelids does a duck have? : C : 1 : 2 : 3 : 4
 FISH0 : What is the minimum score to be a fish0? : B : 800 : 1250 : 900 : 1738
 FISH1 : What is the minimum score to be a fish1? : B : 800 : 1250 : 900 : 1738
 FISH2 : What is the minimum score to be a fish2? : B : 800 : 1250 : 900 : 1738
 FISH3 : What is the minimum score to be a fish3? : B : 800 : 1250 : 900 : 1738
 FISH4 : What is the minimum score to be a fish4? : B : 800 : 1250 : 900 : 1738
-Priest : What is the minimum score to be a priest? : B : 800 : 1250 : 900 : 1738

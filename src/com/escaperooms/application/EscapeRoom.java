@@ -73,8 +73,6 @@ public class EscapeRoom implements EscapeRoomInterface {
             System.out.println(e);
         }
         return allTrivia;
-
-
     }
 
     public void generateEscapeRooms(EscapeRoom room) throws IOException {

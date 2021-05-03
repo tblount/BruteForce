@@ -2,6 +2,7 @@ package com.escaperooms.spaceodyssey;
 
 import com.escaperooms.application.*;
 
+import java.util.Random;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,17 +28,11 @@ public class SpaceOdyssey extends EscapeRoom {
 
     @Override
     public void run(Traveler traveler, EscapeRoom escapeRoom) {
+        this.running = true;
         this.traveler = traveler;
         User user = traveler.getUser();
-        user.newName("Rennie");
-        this.running = true;
-        user.addItem("Aguilera's Microphone");
-        user.addItem("ExampleItem");
-
+        user.move("POD");
         Prompter prompter = new Prompter(new Scanner(System.in));
-
-        user.move("KITCHEN");
-
         //Start Scene//
         while (true){
             if(!running){
@@ -50,6 +45,8 @@ public class SpaceOdyssey extends EscapeRoom {
             String[] choice = inputAction.split(" ");
                     switch(choice[0]){
                 case "INVENTORY" : traveler.getUser().showInventory(); prompter.prompt("Press Enter to Continue"); break;
+                        case "HELP":
+                            System.out.println("Commands start with a <verb> and end with a [noun]\nYou can :\n<go> to [PLACES]\n<talk> to [People]\n<use> [items]\netc...\n'quit' to exit the game"); prompter.prompt("Press Enter to Continue\n"); break;
                         case "TAKE":
                         case "GRAB":
                         case "STEAL":
@@ -63,21 +60,27 @@ public class SpaceOdyssey extends EscapeRoom {
                         case "SWIM":
                         case "WALK":
                         case "RUN":
+                        case "CRAWL":
+                        case "JUMP":
+                        case "SLITHER":
+                        case "FLY":
+                        case "HOP":
+                        case "SKIP":
                         case "GO":
                     if(choice.length>=2){
                         if (choice[1].equals("TO")){
-                            String room = inputAction.substring(6);
+                            String room = inputAction.substring(choice[0].length()+4);
                             if(userCurrentRoom.hasDoor(room)){
                                 user.move(room);
                             }else{
-                                System.out.println("Can't go to "+room);
+                                System.out.println("Can't "+inputAction);
                             }
                         }else{
-                            String room = inputAction.substring(3);
+                            String room = inputAction.substring(choice[0].length()+1);
                             if(userCurrentRoom.hasDoor(room)){
                                 user.move(room);
                             }else{
-                                System.out.println("Can't go to "+room);
+                                System.out.println("Can't "+inputAction);
                             }
                         }
                     } prompter.prompt("Press Enter to Continue\n"); break;
@@ -85,6 +88,7 @@ public class SpaceOdyssey extends EscapeRoom {
                         case "TRY":
                         case "PUSH":
                         case "PULL":
+                        case "PUT":
                         case "KICK":
                         case "FIX":
                         case "CLEAN":
@@ -93,38 +97,90 @@ public class SpaceOdyssey extends EscapeRoom {
                         tryNarrate(choice[1],1);
                         userCurrentRoom.removeUsefulItem(choice[1]);
                         user.addAnswer(choice[1]);
+                    }else if(user.isCurrentRoom("POD") && choice[choice.length-1].equals("KEYPAD")){
+                        startKeypad();
                     }else{
-                        System.out.println("Can't use "+choice[1]);
+                        System.out.println("Can't "+inputAction);
                     } prompter.prompt("Press Enter to Continue\n"); break;
-                case "TALK":
-                    if(choice.length>1 && userCurrentRoom.hasActor(choice[choice.length-1])){
-                        if(user.isCurrentRoom("KITCHEN") && user.hasAnswer("ROCK") && user.hasAnswer("MATCH") && !user.hasAnswer("APRON") ){
-                            tryNarrate(choice[choice.length-1],2);
-                            System.out.println("But you're not a chef, so GET OUT OF MY KITCHEN!");
-                            prompter.prompt("Press Enter to Continue");
-                            new MusicPlayer("soup.wav").start();
-                            running = false;
-                            traveler.menu();
-                            break;
-                        }else if(user.isCurrentRoom("KITCHEN") && user.hasAnswer("ROCK") && user.hasAnswer("MATCH") && user.hasAnswer("APRON") ){
-                            tryNarrate(choice[choice.length-1],2);
-                            user.addItem("Golden Spatula");
-                            System.out.println("Before you have to thank them, you are sucked into a time loop");
-                            prompter.prompt("Press Enter to Continue\n");
-                            running = false;
-                            traveler.menu();
+                        case "PRAISE":
+                        case "FEED":
+                        case "CALL":
+                        case "RIDE":
+                        case "TOUCH":
+                        case "CHASE":
+                        case "PLAY":
+                        case "PET":
+                        case "TALK":
+                    if(choice.length>1 && userCurrentRoom.hasActor(choice[choice.length-1])) {
+                        int randomInt = new Random().nextInt(5);
+                        boolean guess = escapeRoom.trivia.get(choice[choice.length - 1] + randomInt).ask();
+                        if(guess){
+                            if (user.isCurrentRoom("STOCK ROOM") && user.hasAnswer("MATCH")) {
+                            tryNarrate(choice[choice.length - 1], 2);
+                                user.addItem("Golden Spatula");
+                                userCurrentRoom.removeActors("DUCK");
+                                user.addAnswer("DUCK");
+
+//                            new MusicPlayer("soup.wav").start();
+//                            running = false;
+//                            traveler.menu();
+//                            break;
                         }
-                        else{
-                            tryNarrate(choice[choice.length-1],1);
-                            tryPlayConvo(choice[choice.length-1]);
+                            if (user.isCurrentRoom("STOCK ROOM") && !user.hasAnswer("MATCH")) {
+                                tryNarrate(choice[choice.length - 1], 1);
+//                                tryPlayConvo(choice[choice.length - 1]);
+                            }
+                            if (user.isCurrentRoom("KITCHEN")) {
+                                tryNarrate(choice[choice.length - 1], 1);
+                                user.addItem("FishBowl");
+                                userCurrentRoom.removeActors("DUCKLING");
+                            }
+                            if (user.isCurrentRoom("COCK PIT") && user.hasAnswer("DUCK") && user.hasAnswer("FISH") && user.hasAnswer("CAT") && user.hasAnswer("HORSE")) {
+                                tryNarrate(choice[choice.length - 1], 2);
+                            }
+                            if (user.isCurrentRoom("COCK PIT") && (!user.hasAnswer("DUCK") || !user.hasAnswer("FISH") || !user.hasAnswer("CAT") || !user.hasAnswer("HORSE"))) {
+                                tryNarrate(choice[choice.length - 1], 1);
+                            }
+                            if (user.isCurrentRoom("ENGINE ROOM") && !user.isItemInInventory("WRENCH")) {
+                                tryNarrate(choice[choice.length - 1], 1);
+                            }
+                            if (user.isCurrentRoom("ENGINE ROOM") && user.isItemInInventory("WRENCH")) {
+                                tryNarrate(choice[choice.length - 1], 2);
+                                user.removeItem("WRENCH");
+                                userCurrentRoom.removeActors("HORSE");
+                                user.addAnswer("HORSE");
+                            }
+                            if (user.isCurrentRoom("POD") && !user.getInventory().contains("LASER")) {
+                                if(!escapeRoom.innerRooms.get("Space Odyssey : DORMS").hasItem("LASER")){
+                                    escapeRoom.innerRooms.get("Space Odyssey : DORMS").addItem("LASER");
+                                }
+                                tryNarrate(choice[choice.length - 1], 1);
+                            }
+                            if (user.isCurrentRoom("POD") && user.isItemInInventory("LASER")) {
+                                tryNarrate(choice[choice.length - 1], 2);
+                                user.removeItem("LASER");
+                                user.addAnswer("CAT");
+                                userCurrentRoom.removeActors("CAT");
+                            }
+                            if (user.isCurrentRoom("ESCAPE HATCH") && !user.isItemInInventory("FishBowl")) {
+                                tryNarrate(choice[choice.length - 1], 1);
+                            }
+                            if (user.isCurrentRoom("ESCAPE HATCH") && user.isItemInInventory("FishBowl")) {
+                                tryNarrate(choice[choice.length - 1], 2);
+                                user.removeItem("FishBowl");
+                                userCurrentRoom.removeActors("FISH");
+                                user.addAnswer("FISH");
+                            }
+                    }else{
+                            tryNarrate(choice[choice.length - 1], 3);
                         }
                     }else{
-                        System.out.println("Can't talk to "+choice[choice.length-1]);
+                        System.out.println("Can't "+inputAction);
                     }
                     prompter.prompt("Press Enter to Continue\n"); break;
-                case "QUIT" :running = false; break;
+                case "QUIT" :running = false; traveler.menu(); break;
                 default:
-                    System.out.println("I don't understand that command :"+choice[0]); prompter.prompt("Press Enter to Continue\n"); break;
+                    System.out.println("I don't understand that command :"+inputAction); prompter.prompt("Press Enter to Continue\n"); break;
             }
 
         }
@@ -189,14 +245,28 @@ public class SpaceOdyssey extends EscapeRoom {
             System.out.println("You can go to "+userCurrentRoom.getDoors()+ ".");
         }
         if(userCurrentRoom.getDoors().size()>1){
-            System.out.println("You can go to "+userCurrentRoom.getDoors().subList(0,userCurrentRoom.getDoors().size()-1)+ " or "+userCurrentRoom.getDoors().get(userCurrentRoom.getDoors().size()-1)+".");
+            System.out.println("You can go to "+userCurrentRoom.getDoors().subList(0,userCurrentRoom.getDoors().size()-1)+ " or ["+userCurrentRoom.getDoors().get(userCurrentRoom.getDoors().size()-1)+"].");
         }
 
+    }
+
+    public void startKeypad(){
+        gui keypad = new gui();
+        System.out.println("You tried to enter the code.");
+        new Prompter(new Scanner(System.in)).prompt("Press Enter to continue!\n");
+        if(keypad.getCode().equals("4982")){
+            System.out.println("You got the right code and the pod launches you into a different timeline.");
+            traveler.menu();
+            running = false;
+        }else{
+            System.out.println("You put in the wrong code: "+keypad.getCode());
+        }
     }
 
     @Override
     public String getName() {
         return "Space Odyssey";
     }
+
 
 }

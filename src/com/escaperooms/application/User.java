@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-
     String name;
     String currentRoom;
     long startTime = System.currentTimeMillis();
