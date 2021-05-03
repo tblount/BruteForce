@@ -11,6 +11,12 @@ class Client {
 
     public static void main(String[] args) throws IOException {
         AnsiConsole.systemInstall();
+        System.out.println(" _____                   _           \n" +
+                "|_   _|                 | |          \n" +
+                "  | |_ __ __ ___   _____| | ___ _ __ \n" +
+                "  | | '__/ _` \\ \\ / / _ | |/ _ | '__|\n" +
+                "  | | | | (_| |\\ V |  __| |  __| |   \n" +
+                "  \\_|_|  \\__,_| \\_/ \\___|_|\\___|_|   \n");
         User user = new User();
         EscapeRoom escapeRoom = new EscapeRoom();
         escapeRoom.generateEscapeRooms(escapeRoom);

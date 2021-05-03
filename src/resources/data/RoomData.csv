@@ -1,9 +1,9 @@
 Jonin Exams : RoomName : Item1 ~ Item2 : UsefulItem1 ~ UsefulItem2 : ActorName ~ ActorName : RoomName ~ RoomName
 Crazy Stan : RoomName : Item1 ~ Item2 : UsefulItem1 ~ UsefulItem2 : ActorName ~ ActorName : RoomName ~ RoomName
-Space Odyssey : KITCHEN : APRON : MATCH ~ ROCK : CHEF : STOCK ROOM
-Space Odyssey : STOCK ROOM : ROCK ~ MATCH : APRON : APPRENTICE : KITCHEN ~ DORMS
-Space Odyssey : COCK PIT :  :  :  : ENGINE ROOM ~ DORMS
-Space Odyssey : ENGINE ROOM :  :  :  : ESCAPE HATCH ~ COCK PIT
-Space Odyssey : DORMS :  :  :  : COCK PIT
-Space Odyssey : ESCAPE HATCH :  :  :  : ENGINE ROOM
-Space Odyssey : POD :  :  :  : ESCAPE HATCH
+Space Odyssey : KITCHEN :  : MATCH : DUCKLING : STOCK ROOM ~ DORMS
+Space Odyssey : STOCK ROOM :  :  : DUCK : KITCHEN
+Space Odyssey : COCK PIT :  :  : DOG : ENGINE ROOM ~ DORMS
+Space Odyssey : ENGINE ROOM :  :  : HORSE : ESCAPE HATCH ~ COCK PIT
+Space Odyssey : DORMS : MATCH :  :  : COCK PIT ~ KITCHEN
+Space Odyssey : ESCAPE HATCH :  :  : FISH : ENGINE ROOM ~ POD
+Space Odyssey : POD : WRENCH : KEYPAD : CAT : ESCAPE HATCH
