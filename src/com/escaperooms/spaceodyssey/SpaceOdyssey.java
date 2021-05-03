@@ -32,7 +32,7 @@ public class SpaceOdyssey extends EscapeRoom {
         this.traveler = traveler;
         User user = traveler.getUser();
         user.move("COCK PIT");
-        System.out.println("The phasing between timelines is the worst part. Nausea, Confusion, but sometimes new powers!\n For some reason I can hear howls in my head, is it coming from that [Dog]");
+        System.out.println("The phasing between timelines is the worst part. Nausea, Confusion, but sometimes new powers!\nFor some reason I can hear howls in my head, is it coming from that [Dog]?");
         Prompter prompter = new Prompter(new Scanner(System.in));
         //Start Scene//
         while (true){
@@ -69,20 +69,16 @@ public class SpaceOdyssey extends EscapeRoom {
                 case "SKIP":
                 case "GO":
                     if(choice.length>=2){
+                        String room;
                         if (choice[1].equals("TO")){
-                            String room = inputAction.substring(choice[0].length()+4);
-                            if(userCurrentRoom.hasDoor(room)){
-                                user.move(room);
-                            }else{
-                                System.out.println("Can't "+inputAction);
-                            }
+                            room = inputAction.substring(choice[0].length() + 4);
                         }else{
-                            String room = inputAction.substring(choice[0].length()+1);
-                            if(userCurrentRoom.hasDoor(room)){
-                                user.move(room);
-                            }else{
-                                System.out.println("Can't "+inputAction);
-                            }
+                            room = inputAction.substring(choice[0].length() + 1);
+                        }
+                        if(userCurrentRoom.hasDoor(room)){
+                            user.move(room);
+                        }else{
+                            System.out.println("Can't "+inputAction);
                         }
                     } prompter.prompt("Press Enter to Continue\n"); break;
                 case "THROW":
@@ -116,16 +112,12 @@ public class SpaceOdyssey extends EscapeRoom {
                         int randomInt = new Random().nextInt(5);
                         boolean guess = escapeRoom.trivia.get(choice[choice.length - 1] + randomInt).ask();
                         if(guess){
+                            System.out.println("Your minds are in sync!");
                             if (user.isCurrentRoom("STOCK ROOM") && user.hasAnswer("MATCH")) {
                                 tryNarrate(choice[choice.length - 1], 2);
                                 user.addItem("Golden Spatula");
                                 userCurrentRoom.removeActors("DUCK");
                                 user.addAnswer("DUCK");
-
-//                            new MusicPlayer("soup.wav").start();
-//                            running = false;
-//                            traveler.menu();
-//                            break;
                             }
                             if (user.isCurrentRoom("STOCK ROOM") && !user.hasAnswer("MATCH")) {
                                 tryNarrate(choice[choice.length - 1], 1);
