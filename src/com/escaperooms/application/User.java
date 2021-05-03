@@ -14,6 +14,7 @@ public class User {
     List<String> inventory = new ArrayList<>();
     List<String> answers = new ArrayList<>();
     boolean winOrLose;
+    private double travelersID;
 
 
     public double getEndTime() {
@@ -23,10 +24,11 @@ public class User {
     }
     public void getFinishTime() {
         long secs = ((System.currentTimeMillis() - startTime)/1000)%60;
-        int mins = (int) Math.floor(secs/60);
+        int mins = (int) Math.floor(((System.currentTimeMillis() - startTime)/1000)/60);
         System.out.println(
                 "Time : "+mins+" minutes and "+secs+" seconds"
         );
+        System.out.println("Points : "+getPoints());
     }
 
     public int getPoints() {
@@ -104,5 +106,13 @@ public class User {
 
     public String getCurrentRoom() {
         return currentRoom;
+    }
+
+    double getTravelersID() {
+        return travelersID;
+    }
+
+    void setTravelersID(double travelersID) {
+        this.travelersID = travelersID;
     }
 }

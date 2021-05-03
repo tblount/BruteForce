@@ -8,16 +8,19 @@ import com.escaperooms.music.MusicPlayer;
 
 import java.io.IOException;
 
+import static org.fusesource.jansi.Ansi.Color.*;
+import static org.fusesource.jansi.Ansi.ansi;
+
 public class CrazyStans extends EscapeRoom {
     private final String name = "Crazy Stans";
     private Traveler traveler;
-    User user;
-    Lobby lobby = new Lobby();
-    BeyoncesRoom beyoncesRoom = new BeyoncesRoom();
-    ArianasRoom arianasRoom = new ArianasRoom();
-    MichaelJacksonsRoom michaelJacksonsRoom = new MichaelJacksonsRoom();
-    ChristinaAguilerasRoom christinaAguilerasRoom = new ChristinaAguilerasRoom();
-    MusicPlayer musicPlayer;
+    private User user;
+    private final Lobby lobby = new Lobby();
+    private final BeyoncesRoom beyoncesRoom = new BeyoncesRoom();
+    private final ArianasRoom arianasRoom = new ArianasRoom();
+    private final MichaelJacksonsRoom michaelJacksonsRoom = new MichaelJacksonsRoom();
+    private final ChristinaAguilerasRoom christinaAguilerasRoom = new ChristinaAguilerasRoom();
+    private MusicPlayer musicPlayer;
 
     public CrazyStans() throws IOException {
     }
@@ -40,6 +43,10 @@ public class CrazyStans extends EscapeRoom {
         musicPlayer.stopMusic();
     }
 
+    static String commandsList() {
+        return "p = Play, s = Stop, r = Reset, quit = Quit";
+    }
+
     private void challenges() {
         lobbyChallenge();
         if(user.getInventory().contains("match") || user.getInventory().contains("leaf headband")) {
@@ -51,6 +58,7 @@ public class CrazyStans extends EscapeRoom {
         arianaChallenge();
         michaelJacksonChallenge();
         christinaAguileraChallenge();
+        System.out.println("You have escaped Crazy Stans!");
     }
 
     private void closing() {
@@ -82,7 +90,14 @@ public class CrazyStans extends EscapeRoom {
     }
 
     private String welcomeMessage() {
-        return "Welcome to " + name + ".";
+        return "Welcome to " + name + ". To escape this room, you will first have to solve the lobby challenge " +
+                "and acquire the Song Key.\nThe Song Key will allow you to enter " +
+                ansi().fg(GREEN).a("Beyonce's, Ariana Grande's and Michael Jackson's rooms.").reset() +
+                "\nIn each room, you must solve a challenge to acquire the room's item.\n" +
+                "Once the items from those rooms have been collected, you can enter the final room of " +
+                ansi().fg(RED).a("Christina Aguilera.").reset() + "\nSolve all the challenges in the Aguilera room " +
+                "to receive the mic of the great one.\nWith this mic, you will be able to make your escape.\n" +
+                "If any of the challenges become too difficult along the way, type 'hint' to receive a hint.";
     }
 
 
